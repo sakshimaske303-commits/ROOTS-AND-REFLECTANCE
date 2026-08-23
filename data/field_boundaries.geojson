@@ -1,0 +1,303 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "zone": "sawardoh",
+        "field_num": 1,
+        "field_id": "BACD",
+        "name": "Cotton & Pigeon Pea (Tur)",
+        "area_ha": 0.2215,
+        "sown": "2026-06-22",
+        "crops": [
+          "cotton",
+          "tur"
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              78.3501074,
+              21.2230902
+            ],
+            [
+              78.3501135,
+              21.2233177
+            ],
+            [
+              78.351117,
+              21.2230808
+            ],
+            [
+              78.3510103,
+              21.2229295
+            ],
+            [
+              78.3501074,
+              21.2230902
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "zone": "sawardoh",
+        "field_num": 2,
+        "field_id": "BDHG",
+        "name": "Orange, Cotton & Pigeon Pea (Tur)",
+        "area_ha": 0.8792,
+        "sown": "2026-06-22",
+        "crops": [
+          "cotton",
+          "tur",
+          "orange"
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              78.3501074,
+              21.2230902
+            ],
+            [
+              78.3510103,
+              21.2229295
+            ],
+            [
+              78.3508953,
+              21.2221869
+            ],
+            [
+              78.3498298,
+              21.222351
+            ],
+            [
+              78.3501074,
+              21.2230902
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "zone": "sawardoh",
+        "field_num": 3,
+        "field_id": "GHLJ",
+        "name": "Cotton",
+        "area_ha": 0.7771,
+        "sown": "2026-06-22",
+        "crops": [
+          "cotton"
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              78.3498298,
+              21.222351
+            ],
+            [
+              78.3508953,
+              21.2221869
+            ],
+            [
+              78.3503374,
+              21.2213256
+            ],
+            [
+              78.349681,
+              21.2219894
+            ],
+            [
+              78.3498298,
+              21.222351
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "zone": "sawardoh",
+        "field_num": 4,
+        "field_id": "CHIFE",
+        "name": "Orange, Cotton, Pigeon Pea (Tur) & Turmeric",
+        "area_ha": 0.8226,
+        "sown": "2026-06-22",
+        "crops": [
+          "cotton",
+          "tur",
+          "orange",
+          "turmeric"
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              78.351117,
+              21.2230808
+            ],
+            [
+              78.3508953,
+              21.2221869
+            ],
+            [
+              78.3517567,
+              21.2220694
+            ],
+            [
+              78.3519297,
+              21.2226489
+            ],
+            [
+              78.3518717,
+              21.2227811
+            ],
+            [
+              78.351117,
+              21.2230808
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "zone": "sawardoh",
+        "field_num": 5,
+        "field_id": "KMON",
+        "name": "Cotton",
+        "area_ha": 0.6585,
+        "sown": "2026-06-22",
+        "crops": [
+          "cotton"
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              78.3496267,
+              21.2218309
+            ],
+            [
+              78.3492049,
+              21.2211202
+            ],
+            [
+              78.3501095,
+              21.2207714
+            ],
+            [
+              78.350319,
+              21.2210368
+            ],
+            [
+              78.3496267,
+              21.2218309
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "zone": "karanja",
+        "field_num": 1,
+        "field_id": "BAEF",
+        "name": "Soyabean & Pigeon Pea (Tur)",
+        "area_ha": 0.786,
+        "sown": "2026-06-27",
+        "crops": [
+          "soyabean",
+          "tur"
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              78.4009879,
+              21.1595884
+            ],
+            [
+              78.4018892,
+              21.1592801
+            ],
+            [
+              78.401637,
+              21.158617
+            ],
+            [
+              78.400755,
+              21.158882
+            ],
+            [
+              78.4009879,
+              21.1595884
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "zone": "karanja",
+        "field_num": 2,
+        "field_id": "EFCD",
+        "name": "Soyabean",
+        "area_ha": 0.9758,
+        "sown": "2026-06-27",
+        "crops": [
+          "soyabean"
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              78.401637,
+              21.158617
+            ],
+            [
+              78.400755,
+              21.158882
+            ],
+            [
+              78.4004545,
+              21.1579731
+            ],
+            [
+              78.4012324,
+              21.1577139
+            ],
+            [
+              78.401637,
+              21.158617
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}
