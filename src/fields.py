@@ -1,12 +1,12 @@
 """
 Field boundary definitions for ROOTS & REFLECTANCE.
 
-These coordinates are copied 1:1 from the live portfolio (GEOSPATIAL-PORTFOLIO/index.html,
-RR_SAWARDOH_POINTS / RR_SAWARDOH_PATCHES / RR_KARANJA_POINTS / RR_KARANJA_PATCHES) so the
-satellite analysis geometry always matches what's shown on the portfolio map. If a field
-boundary is ever corrected on the portfolio side, mirror the change here too.
+I copied these coordinates straight from my portfolio (GEOSPATIAL-PORTFOLIO/index.html,
+RR_SAWARDOH_POINTS / RR_SAWARDOH_PATCHES / RR_KARANJA_POINTS / RR_KARANJA_PATCHES) so my
+satellite analysis always lines up with what I've mapped there. If I ever correct a
+boundary on the portfolio side, I mirror the change here too.
 
-Coordinate format: [latitude, longitude] (matches Leaflet's convention used in the portfolio).
+Coordinate format: [latitude, longitude] — same convention I use for Leaflet on the portfolio.
 """
 
 SAWARDOH_POINTS = {
@@ -56,7 +56,7 @@ KARANJA_PATCHES = [
 
 
 def patch_to_geojson_polygon(points, patch):
-    """Build a GeoJSON Polygon (lon/lat order) for one field from its corner-point letters."""
+    """Turn one field's corner-point letters into a GeoJSON Polygon (lon/lat order)."""
     ring = [[points[c][1], points[c][0]] for c in patch['corners']]  # lon, lat
     ring.append(ring[0])  # close the ring
     return {
@@ -75,7 +75,7 @@ def patch_to_geojson_polygon(points, patch):
 
 
 def all_fields_geojson():
-    """Return a GeoJSON FeatureCollection covering all 7 fields (both zones)."""
+    """Give back a GeoJSON FeatureCollection covering all 7 of my fields (both zones)."""
     features = []
     for patch in SAWARDOH_PATCHES:
         feat = patch_to_geojson_polygon(SAWARDOH_POINTS, patch)

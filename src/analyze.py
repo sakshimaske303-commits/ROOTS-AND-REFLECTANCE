@@ -1,11 +1,11 @@
 """
-ROOTS & REFLECTANCE — analysis of the Sentinel-2 NDVI/NDRE time series exported
-from Google Earth Engine (see src/gee_extract_indices.js for how the CSV is produced).
+ROOTS & REFLECTANCE — my analysis of the Sentinel-2 NDVI/NDRE time series I export
+from Earth Engine (see gee_extract_indices.js for how I pull the CSV).
 
 Usage:
     python3 analyze.py path/to/roots_reflectance_ndvi_ndre.csv
 
-Produces, in output/:
+This gives me, in output/:
     - one NDVI+NDRE time-series chart per field (7 charts)
     - one cross-field comparison chart per zone, grouped by crop mix
     - a combined summary CSV with a few derived stats (peak NDVI date, etc.)
@@ -29,9 +29,9 @@ FIELD_LABELS = {
 def load(csv_path):
     df = pd.read_csv(csv_path)
     df['date'] = pd.to_datetime(df['date'])
-    # Adjacent Sentinel-2 orbit tiles sometimes both cover the same field on the
-    # same acquisition date, producing two near-identical rows for that date —
-    # average them down to one clean reading per field per date.
+    # I noticed two adjacent Sentinel-2 orbit tiles sometimes both cover the same
+    # field on the same date, giving two near-identical rows — I average those
+    # down to one clean reading per field per date.
     static_cols = ['zone', 'field_num', 'field_id', 'name', 'area_ha', 'sown', 'crops']
     df = df.groupby(['zone', 'field_num', 'date'], as_index=False).agg(
         {**{c: 'first' for c in static_cols if c not in ('zone', 'field_num')},

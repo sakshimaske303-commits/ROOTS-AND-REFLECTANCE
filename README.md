@@ -1,18 +1,20 @@
 # ROOTS & REFLECTANCE — Satellite Analysis
 
-Companion analysis repo to the ROOTS & REFLECTANCE project on the main portfolio
-(GEOSPATIAL-PORTFOLIO). This repo cross-validates the weekly ground-truth
-geotagged photos against actual Sentinel-2 satellite vegetation indices
-(NDVI and NDRE) for all 7 mapped fields — 5 in Sawardoh, 2 in Karanja Ghadge.
+This is where I cross-validate my weekly ground-truth geotagged photos
+against actual Sentinel-2 satellite vegetation indices (NDVI and NDRE), for
+all 7 fields I've mapped — 5 in Sawardoh, 2 in Karanja Ghadge. It's the
+companion analysis repo to the main ROOTS & REFLECTANCE project on my
+portfolio (GEOSPATIAL-PORTFOLIO).
 
 ## What this shows
 
-For each field: a canopy-vigour time series (NDVI) and a red-edge / chlorophyll
-time series (NDRE) from sowing date to the present, pulled directly from
-Sentinel-2 imagery. Fields with different crop mixes (pure cotton vs.
-cotton+tur intercropped vs. soyabean+tur) can be compared side by side to see
-whether intercropping changes the canopy-closure curve — a genuine, ground-
-truthed remote sensing finding, not just a satellite pass gimmick.
+For each field, I track a canopy-vigour time series (NDVI) and a red-edge /
+chlorophyll time series (NDRE) from sowing date to the present, pulled
+directly from Sentinel-2 imagery. I can then compare fields with different
+crop mixes (pure cotton vs. cotton+tur intercropped vs. soyabean+tur) side
+by side to see whether intercropping changes the canopy-closure curve — a
+genuine, ground-truthed remote sensing finding, not just a satellite pass
+gimmick.
 
 ## Structure
 
@@ -58,14 +60,21 @@ python3 src/analyze.py path/to/roots_reflectance_ndvi_ndre.csv
 This writes per-field NDVI/NDRE charts, a per-zone comparison chart, and a
 `field_summary.csv` into `output/`.
 
-**Re-running later in the season:** the GEE script's end date is always
-"today", so re-running it any week just pulls whatever new Sentinel-2 passes
-have come in since the first export — no code changes needed.
+**Re-running later in the season:** my script's end date is always "today",
+so whenever I re-run it, it just pulls whatever new Sentinel-2 passes have
+come in since my last export — I don't touch the code. Each field keeps one
+chart that accumulates every date I've collected so far, not a new chart
+every week — running `analyze.py` again on a fresher CSV just redraws that
+same chart with the new points added on. I plan to re-run this alongside my
+weekly ground-photo log, though my satellite dates won't always land on the
+same day as my photos — Sentinel-2 revisits roughly every 5 days, but only
+the cloud-free passes are usable, so some weeks I get more than one date and
+some weeks none.
 
-## Why the Code Editor and not a local Python script
+## Why I use the Code Editor and not a local Python script
 
 Earth Engine needs a live, OAuth-authenticated Google login to pull imagery.
-The Code Editor already runs that login in the browser, so there's no separate
-credential setup to manage — and it's the same Earth Engine tooling the
-ESA/EO College coursework already uses, so it doubles as hands-on practice
-with it.
+I use the Code Editor because it already runs that login in my browser, so I
+don't have to manage a separate credential setup — and it's the same Earth
+Engine tooling I already use for the ESA/EO College coursework, so it
+doubles as practice with it.
