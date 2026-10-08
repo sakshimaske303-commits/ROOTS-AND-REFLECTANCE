@@ -118,3 +118,108 @@ extraction is a manual Earth Engine Code Editor step, not automatic).
   useful evidence of exactly how much of this season the monsoon cloud
   cover has actually blocked satellite observation, separate from the
   NDVI/NDRE story itself.
+
+**8 Oct 2026** — *project question changed*
+- Stopped framing this as "does intercropping change the canopy-closure
+  curve". With one field per crop mix, and the fields also differing in
+  size, soil and village, that comparison cannot be separated from
+  everything else. New question: what can a satellite know about a
+  sub-hectare monsoon field, measured as observability, pixel support and
+  agreement with the ground record. Written up in
+  `docs/RESEARCH_DESIGN.md`.
+- Pixel support (`src/pixel_purity.py`). Pure 10 m pixels per field:
+  Sawardoh F1 10, F2 65, F3 56, F4 61, F5 44; Karanja F1 58, F2 72. Pure
+  20 m pixels: 0, 13, 10, 12, 7, 10, 13. Sawardoh field 1 has no pure 20 m
+  pixel, so its red-edge value always includes neighbouring land.
+- Ground photo record. Indexed the weekly photos from 23 Aug to 4 Oct
+  (`data/ground_photo_index.csv`) and read position and time from the stamp
+  on each photo (`src/photo_metadata.py`, 85 of 85 read). 44 of 47 overview
+  photos are within 10 m of the field's usual spot. The three that are not:
+  Karanja F1 on 30 Aug (69 m), Sawardoh F2 on 23 Aug (75 m), Sawardoh F4 on
+  20 Sep (46 m).
+- Every overview photo was taken within 14 m of the field edge, median
+  2.8 m. Pure pixels start 10 m inside. So far the photos and the pixels
+  describe different parts of each field. Added a second, interior,
+  straight-down photo point to the weekly routine
+  (`docs/FIELD_PROTOCOL.md`).
+- Photo greenness series from the overview photos
+  (`src/photo_greenness.py`). Noisy because lighting and framing change
+  week to week; kept as indicative only.
+- Three problems found in the first extraction. (1) The cloud filter is
+  tile-wide (`CLOUDY_PIXEL_PERCENTAGE < 40`), which is not a test of
+  whether a 1 ha field was clear; my 6 Sep note that the threshold was
+  "reasonably generous" was wrong about what it tests. (2) NDRE used B8
+  (10 m) with B5 (20 m). (3) The 21 Jun pass is the day before sowing, so
+  only 14 Jul is a crop observation.
+- Wrote `src/gee_observability_audit.js` (every pass, per field, Cloud
+  Score+ and scene classification, full field and a 10 m inner footprint),
+  `src/gee_extract_rain.js` (CHIRPS and ERA5-Land) and changed
+  `src/gee_extract_sar.js` to export every pass with its orbit. Wrote
+  `src/observability.py` for the tables and timelines. None of these has
+  been run on real data yet.
+- Boundary check: a 356 m² triangle between Sawardoh fields 1, 2 and 4 is
+  in no field polygon. To verify on the ground.
+- `29sep6.jpeg` and `29sep13.jpeg` are the same file. `13sept12.jpeg` and
+  `23aug4.jpeg` are not in the weekly log.
+- Added empty templates for the crop-stage log, harvest log and farm
+  ledger.
+
+**8 Oct 2026** — *observability audit, first run*
+- Ran `src/gee_observability_audit.js` in the Code Editor and exported
+  `data/roots_reflectance_s2_audit.csv`: 28 pass dates from 21 Jun to
+  7 Oct, every field on every pass. Ran `src/observability.py` on it.
+- The 7 Oct pass had no Cloud Score+ value yet. The script first counted
+  it as not usable, which is wrong (its tile cloud is 0%), so
+  `observability.py` now leaves out passes that have no score and prints
+  their dates. Results below run to 2 Oct.
+- Usable looks after sowing: Sawardoh fields 1 to 4, 4 of 26 passes (14 Jul,
+  22 Sep, 27 Sep, 2 Oct); Sawardoh field 5, 3 of 26 (on 22 Sep only 55% of
+  it was usable); Karanja fields, 5 of 25 (14 Jul, 17, 22, 27 Sep, 2 Oct).
+- Longest stretch with no usable look: 65 days at Karanja, 70 at Sawardoh
+  fields 1 to 4, 75 at field 5. It runs from 14 Jul to mid-September. NDVI
+  was about 0.3 before it and 0.63 to 0.84 after it; the whole rise is
+  unobserved.
+- I expected the tile-wide 40% rule to have thrown away passes on which my
+  fields were clear. It did not: every usable look was also under 40% tile
+  cloud. The rule failed the other way. On 17 Sep the tile was 28% cloudy
+  and passed the rule, but the Sawardoh fields were not usable, while the
+  Karanja fields 8 km away were. So the two exports that stopped at 14 Jul
+  were right that nothing usable existed up to 6 Sep.
+- Whole-field and inner-footprint NDVI differ by 0.01 to 0.03 on average.
+- Ground and satellite: 22 usable looks have a photo within three days, all
+  from 17 Sep on. Karanja field 2 (soyabean) fell from NDVI 0.80 on 17 Sep
+  to 0.44 on 2 Oct, and the green share of its overview photo fell from
+  0.93 (20 Sep) to 0.51 (29 Sep). That is one field and two photos; I am
+  noting it, not calling it validation.
+- Radar and rainfall scripts are still to be run.
+
+**8 Oct 2026** — *radar and rainfall added*
+- Ran `src/gee_extract_sar.js` and `src/gee_extract_rain.js`, exported
+  `data/roots_reflectance_sar.csv` and `data/roots_reflectance_rain.csv`,
+  and re-ran `src/observability.py` with both.
+- Radar: 8 Sentinel-1 passes over the fields, all descending, relative
+  orbit 165, 28 Jun to 27 Sep, 12 days apart. Half the exported rows are
+  empty (a second scene that only borders the fields); the script drops
+  them. 6 of the 8 passes fall inside every field's optical gap.
+- What RVI shows in the gap: Karanja field 2 0.37 to 0.82, Sawardoh field 3
+  0.50 to 0.67, field 5 0.48 to 0.68. These rise the way a growing canopy
+  should.
+- What it does not show: Sawardoh field 1 reads 0.75 on 28 Jun, six days
+  after sowing, when the optical NDVI a week earlier was 0.13. At 0.22 ha
+  that field is a handful of radar pixels and the value cannot be the
+  crop. Field 2 (with orange trees) stays between 0.52 and 0.69 all
+  season. So radar closes the gap in time, not necessarily in meaning, and
+  the smaller or more mixed the field the less it says. No speckle filter
+  is applied, and with one orbit there is no second geometry to check
+  against.
+- Rain: CHIRPS runs to 31 Aug, ERA5-Land to 30 Sep. July total 371 to
+  384 mm (CHIRPS) and 349 to 360 mm (ERA5-Land). August 95 to 100 mm
+  against 158 to 160 mm: the two products disagree by about 60 mm, and
+  neither is a gauge in my field.
+- Rain on pass days (ERA5-Land): 55% of the field-passes that were not
+  usable had 2.5 mm or more of rain that day, against 25 to 29% of the
+  usable ones. Those rain cells are about 11 km wide and the usable group
+  is small, so this is a description, not a test.
+- New outputs: `radar_in_optical_gap.csv`, `optical_radar_series_*.png`,
+  `rain_on_pass_days.csv`, `rain_by_month.csv`; the timelines now carry the
+  radar passes and a rain panel.

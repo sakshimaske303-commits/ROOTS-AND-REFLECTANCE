@@ -1,3 +1,9 @@
 __pycache__/
 *.pyc
 .DS_Store
+
+# Raw ground-truth photos are multi-MB each and live on the portfolio site
+# (GEOSPATIAL-PORTFOLIO/assets/rr-photos) — kept out of this repo's git
+# history so cloning/pulling stays fast. See README for the one-time
+# `git rm --cached` step needed to also drop the ones already committed.
+geotagged_images/

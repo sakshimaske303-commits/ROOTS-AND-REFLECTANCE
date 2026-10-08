@@ -1,0 +1,8 @@
+zone,field_num,crops,sown,audit_ends,passes,usable_looks,usable_share,kept_by_tile_rule,usable_and_kept_by_tile_rule,usable_but_dropped_by_tile_rule,kept_by_tile_rule_but_not_usable,longest_gap_days,median_gap_days,mean_abs_ndvi_difference_full_vs_inner
+karanja,1,"soyabean,tur",2026-06-27,2026-10-02,25,5,0.2,5,5,0,0,65,5.0,0.0124
+karanja,2,soyabean,2026-06-27,2026-10-02,25,5,0.2,5,5,0,0,65,5.0,0.0273
+sawardoh,1,"cotton,tur",2026-06-22,2026-10-02,26,4,0.15,5,4,0,1,70,5.0,0.0151
+sawardoh,2,"cotton,tur,orange",2026-06-22,2026-10-02,26,4,0.15,5,4,0,1,70,5.0,0.0113
+sawardoh,3,cotton,2026-06-22,2026-10-02,26,4,0.15,5,4,0,1,70,5.0,0.0267
+sawardoh,4,"cotton,tur,orange,turmeric",2026-06-22,2026-10-02,26,4,0.15,5,4,0,1,70,5.0,0.0194
+sawardoh,5,cotton,2026-06-22,2026-10-02,26,3,0.12,5,3,0,2,75,13.5,0.0242

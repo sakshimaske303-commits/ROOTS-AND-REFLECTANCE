@@ -1,0 +1,15 @@
+source,zone,month,days,rain_mm,days_2p5mm_or_more
+CHIRPS,karanja,2026-06,30,175.0,9
+CHIRPS,karanja,2026-07,31,384.0,18
+CHIRPS,karanja,2026-08,31,100.0,10
+CHIRPS,sawardoh,2026-06,30,162.0,9
+CHIRPS,sawardoh,2026-07,31,371.0,18
+CHIRPS,sawardoh,2026-08,31,95.0,10
+ERA5-Land,karanja,2026-06,30,135.0,10
+ERA5-Land,karanja,2026-07,31,360.0,21
+ERA5-Land,karanja,2026-08,31,158.0,20
+ERA5-Land,karanja,2026-09,30,114.0,10
+ERA5-Land,sawardoh,2026-06,30,125.0,10
+ERA5-Land,sawardoh,2026-07,31,349.0,19
+ERA5-Land,sawardoh,2026-08,31,160.0,18
+ERA5-Land,sawardoh,2026-09,30,107.0,8

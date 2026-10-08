@@ -1,2 +1,10 @@
-pandas
-matplotlib
+pandas>=2.0
+matplotlib>=3.5
+numpy>=1.24
+shapely>=2.0
+pyproj>=3.4
+Pillow>=9.0
+# photo_metadata.py also needs the Tesseract OCR program on the PATH
+# (https://github.com/tesseract-ocr/tesseract); it is not a Python package.
+# To lock the exact versions behind a given run, I save `pip freeze` to
+# requirements-lock.txt after that run and commit it alongside this file.

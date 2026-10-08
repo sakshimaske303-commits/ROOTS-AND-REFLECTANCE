@@ -1,0 +1,8 @@
+zone,field_num,crops,area_ha_listed,area_ha_from_boundary,perimeter_m,centre_in_10m,pure_10m,purity_10m,centre_in_20m,pure_20m,purity_20m,max_inset_m
+sawardoh,1,"cotton,tur",0.2215,0.2206,248.3,21,10,0.48,5,0,0.0,12.0
+sawardoh,2,"cotton,tur,orange",0.8792,0.8757,377.6,88,65,0.74,21,13,0.62,42.0
+sawardoh,3,cotton,0.7771,0.7741,367.0,78,56,0.72,19,10,0.53,39.5
+sawardoh,4,"cotton,tur,orange,turmeric",0.8226,0.8193,359.7,82,61,0.74,19,12,0.63,44.5
+sawardoh,5,cotton,0.6585,0.656,341.9,66,44,0.67,17,7,0.41,34.5
+karanja,1,"soyabean,tur",0.786,0.7828,355.8,79,58,0.73,19,10,0.53,40.0
+karanja,2,soyabean,0.9758,0.9719,395.9,95,72,0.76,24,13,0.54,45.5
