@@ -7,8 +7,6 @@ to the satellite cross-validation pipeline. Updated as the season progresses.
 
 - Walked and GPS-mapped all 7 field boundaries by hand — 5 in Sawardoh, 2 in
   Karanja Ghadge, Dist. Wardha, Maharashtra.
-- Renamed the boundaries from "Patch" to "Field" across the portfolio —
-  a field is what it is on the ground, not a jargon label.
 - Corrected Field 4 (Sawardoh) to include the turmeric rows sown alongside
   cotton, tur, and orange. Turmeric's exact sowing date is still pending
   confirmation and is marked accordingly until then.
@@ -223,3 +221,37 @@ extraction is a manual Earth Engine Code Editor step, not automatic).
 - New outputs: `radar_in_optical_gap.csv`, `optical_radar_series_*.png`,
   `rain_on_pass_days.csv`, `rain_by_month.csv`; the timelines now carry the
   radar passes and a rain panel.
+
+**11 Oct 2026** — *season two set up: taking the results back to the field*
+- Corrected how the fields are described. Not all seven are my family's:
+  some are farmed by neighbouring farmers in the two villages. The README,
+  research design and portfolio text now say so. Farmers appear only as
+  codes (A, B, ...); names and any notes stay in `private/`, outside git.
+- Added Field Watch for the rabi season (`docs/FIELD_WATCH.md`):
+  `src/gee_field_watch.js` exports every 10 m pixel per field and pass from
+  1 Oct; `src/field_watch.py` flags weak patches inside a field and appends
+  them to `data/field_alerts.csv`, which is committed before each ground
+  visit. Tested on made-up pixels only; no real export has been run yet.
+- Added `src/cost_return.py` (cost and return per field and per hectare,
+  sales against the 2026-27 MSP) and empty templates for
+  `field_owners.csv`, `farmer_feedback.csv` and `insurance_check.csv`.
+- Context I checked this week, to be confirmed against the GR before it goes
+  on the portfolio: the state's drought declaration of 25 Sep 2026 lists 7 of
+  Wardha's 8 talukas, and press reports say Karanja, where both villages lie,
+  is the one left out.
+
+**11–17 Oct 2026** — *farm records and the farmers' side*
+- Recorded who cultivates which field (four farmers, codes A to D), the
+  17 Sep input bill, crop stages, an insurance check for Farmer A and the
+  first round of feedback. Orange is in fields 2 and 4; the trees are young
+  and start bearing next year. No turmeric was sown this year.
+- Cotton hybrids sown in Sawardoh (mixed): Ankur, Rasi 779, Mahyco Jungee and
+  Kabaddi. Cotton and tur are still standing; cotton is picked in January.
+  Soyabean was harvested after the 29 Sep round. The 28 q reported for
+  Karanja 2 is well above usual yields and is being rechecked.
+- Worked out cost and return per field for this season with each farmer,
+  from regional costs, the 2026-27 MSP and early-October prices, since none
+  keeps written accounts. Each farmer went through their field's figures and
+  confirmed them: `data/season_figures_2026.csv`.
+- Gave each farmer their field map, measured area and season timeline. They
+  agreed to keep records of costs and harvests from now on.

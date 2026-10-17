@@ -1,0 +1,8 @@
+zone,field,farmer_code,crops,area_ha,cost_rs_per_ha,harvest_this_season,margin_rs_per_ha,margin_normal_year_rs_per_ha,status
+sawardoh,1,A,cotton;tur,0.2215,35900,cotton 0.8 q; tur 0.5 q,14700,53000,worked out with the farmer and confirmed (no written accounts)
+sawardoh,2,A,cotton;tur;orange,0.8792,32800,cotton 3.3 q; tur 1.0 q,9000,40100,worked out with the farmer and confirmed (no written accounts)
+sawardoh,3,A,cotton,0.7771,58100,cotton 4.9 q,-4000,54300,worked out with the farmer and confirmed (no written accounts)
+sawardoh,4,A,cotton;tur;orange,0.8226,37600,cotton 3.8 q; tur 0.5 q,7300,40300,worked out with the farmer and confirmed (no written accounts)
+sawardoh,5,B,cotton,0.6585,62900,cotton 7.3 q,32800,54300,worked out with the farmer and confirmed (no written accounts)
+karanja,1,C,soyabean;tur,0.786,38100,soyabean 4.0 q; tur 0.7 q,-200,29100,worked out with the farmer and confirmed (no written accounts)
+karanja,2,D,soyabean,0.9758,,,,,withheld: reported harvest (28 q) being rechecked

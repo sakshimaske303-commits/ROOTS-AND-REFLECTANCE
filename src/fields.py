@@ -30,10 +30,9 @@ SAWARDOH_PATCHES = [
     {'num': 3, 'id': 'GHLJ', 'name': 'Cotton',
      'corners': ['G', 'H', 'L', 'J'], 'area_ha': 0.7771,
      'sown': '2026-06-22', 'crops': ['cotton']},
-    {'num': 4, 'id': 'CHIFE', 'name': 'Orange, Cotton, Pigeon Pea (Tur) & Turmeric',
+    {'num': 4, 'id': 'CHIFE', 'name': 'Orange, Cotton & Pigeon Pea (Tur)',
      'corners': ['C', 'H', 'I', 'F', 'E'], 'area_ha': 0.8226,
-     'sown': '2026-06-22', 'crops': ['cotton', 'tur', 'orange', 'turmeric'],
-     'turmeric_sown': None},  # TBC — confirm with father, then fill in
+     'sown': '2026-06-22', 'crops': ['cotton', 'tur', 'orange']},  # turmeric was last year's crop; a few plants remain
     {'num': 5, 'id': 'KMON', 'name': 'Cotton',
      'corners': ['K', 'M', 'O', 'N'], 'area_ha': 0.6585,
      'sown': '2026-06-22', 'crops': ['cotton']},

@@ -7,3 +7,7 @@ __pycache__/
 # history so cloning/pulling stays fast. See README for the one-time
 # `git rm --cached` step needed to also drop the ones already committed.
 geotagged_images/
+
+# Private field notes: farmer names, the code-to-name key, conversation notes.
+# Never pushed.
+private/

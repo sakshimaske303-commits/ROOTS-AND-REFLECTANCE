@@ -5,7 +5,7 @@
 During a monsoon season, what can a satellite actually know about a field of less than one hectare,
 when, and how far can that be trusted?
 
-I can answer this for my own fields because I hold three things that satellite studies of large
+I can answer this for these seven fields, some my family's and some our neighbours', because I hold three things that satellite studies of large
 areas usually do not: the sowing date of each field, the field boundary walked on the ground, and
 a look at the crop from the ground every week.
 
@@ -53,3 +53,14 @@ against the scheme's own documents or government statements.
 - Yield from satellite data. The harvest log will give the yields; relating them to the
   satellite series with seven fields would be curve-fitting.
 - Anything beyond these seven fields in two villages.
+
+## Season two: what changes when the results go back to the field
+
+From October 2026 the project adds a loop the kharif work did not have: a satellite alert
+is written down and committed first, then checked on the ground, then shown to the farmer,
+and the farmer's decision is recorded (`docs/FIELD_WATCH.md`). Alongside it, the farm
+ledger, harvest log and an insurance check per field put the season into rupees.
+
+What would count as a result: the share of alerts confirmed on the ground, the false-alarm
+rate, how many led to an action, and the cost and return per field. With seven fields this
+stays a documented case. A farmer declining to take part is recorded as such.

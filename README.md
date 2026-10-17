@@ -2,9 +2,10 @@
 
 **What can a satellite actually know about a sub-hectare monsoon field?**
 
-Seven family fields in Wardha district, Vidarbha (five in Sawardoh, two in
-Karanja Ghadge), sown on 22 and 27 June 2026 with cotton, pigeon pea,
-soyabean and turmeric. The fields are 0.22 to about 1 ha. I visit them
+Seven fields in Wardha district, Vidarbha (five in Sawardoh, two in
+Karanja Ghadge, both villages in Karanja taluka), cultivated by four farmers: some by my
+family and the others by neighbouring farmers. They were sown on 22 and 27 June 2026 with cotton, pigeon pea
+and soyabean. The fields are 0.22 to about 1 ha. I visit them
 every week and photograph each one; this repo measures how much of that
 season the satellites could see, how many of their pixels really belong to
 each field, and how the satellite record compares with what was on the
@@ -28,7 +29,7 @@ Done, from data already in this repo:
   (0.22 ha) has 10 pure pixels at 10 m and none at 20 m, so a red-edge
   index for that field is always mixed with its neighbours.
   `output/pixel_purity.csv`, `output/pixel_grid_*.png`
-- **Ground photo record.** 85 weekly photos from 23 Aug to 4 Oct, indexed
+- **Ground photo record.** 85 weekly photos from 23 Aug to 4 Oct (82 of them indexed; three are repeats or extras), indexed
   by date, field and subject. Position and time are read from the stamp
   printed on each photo. 44 of 47 field-overview photos were taken within
   10 m of that field's usual spot. Every overview photo was taken within
@@ -69,10 +70,43 @@ Done, from data already in this repo:
   usable had 2.5 mm or more of rain that day. `output/rain_by_month.csv`,
   `output/rain_on_pass_days.csv`
 
-Not started:
+Farm records (from 11 Oct):
 
-- Crop-stage log, harvest log and farm ledger (`data/*.csv` templates are
-  empty).
+- Who cultivates which field (codes only), one input bill (17 Sep), crop stage
+  notes, an insurance check for one farm and one round of farmer feedback are in
+  `data/`. Cotton and tur are still standing; cotton is picked in January.
+  Soyabean was harvested in early October; the quantity reported for Karanja 2
+  is being rechecked.
+- Cost and return per field for this season, worked out with each farmer from
+  regional costs and prices and confirmed by them (none keeps written
+  accounts): `data/season_figures_2026.csv`. Recorded figures replace these as
+  the farmers' own records come in.
+
+## Season two: back to the field (from October 2026)
+
+The kharif work measured what the satellite could not see. The rabi season is clear,
+so the second part of the project takes the results back to the people farming these
+fields and records what happens. Everything here is set up; the results are filled in
+as they come.
+
+- **Field Watch** (`docs/FIELD_WATCH.md`). Every clear Sentinel-2 pass is searched for
+  weak patches inside each field. Each alert is committed before anyone walks there,
+  then checked on the ground and shown to the farmer. Scored at the end of the season
+  as alerts issued, confirmed and acted on, with the false-alarm rate.
+  `src/gee_field_watch.js`, `src/field_watch.py`, `data/field_alerts.csv`
+- **What the season cost.** Cost and return per field and per hectare from the farm
+  ledger and harvest log, with family labour counted in days and, separately, valued at
+  a local wage; prices received set against the 2026-27 MSP.
+  `src/cost_return.py`, `output/cost_return_by_field.csv`, `output/sales_vs_msp.csv`
+- **Insurance check.** With each farmer's permission: was the crop insured, for what
+  area, against the area mapped on the ground, and was anything paid.
+  `data/insurance_check.csv`
+- **Feedback.** What was shown to whom, what they said and decided, in one line each.
+  `data/farmer_feedback.csv`
+
+Farmers appear only as codes (A, B, …). No names, faces, phone numbers or document
+numbers are kept in this repo; the key and any notes stay in `private/`, which is not
+in git.
 
 ## Known limits
 
@@ -98,8 +132,9 @@ Not started:
   intercropping changes the canopy curve, and the project does not claim
   it.
 - A 356 m² triangle between Sawardoh fields 1, 2 and 4 belongs to no field
-  in `data/field_boundaries.geojson`. It needs a check on the ground.
-- Seven fields, one family, one season. This is a measured case, not a
+  in `data/field_boundaries.geojson`. It is a shed (confirmed on the ground,
+  Oct 2026), so it is correctly left out.
+- Seven fields, two villages, one season. This is a measured case, not a
   sample of Vidarbha.
 
 ## Structure
@@ -108,6 +143,7 @@ Not started:
 docs/
   RESEARCH_DESIGN.md         Question, measurements, what would count as a result
   FIELD_PROTOCOL.md          Weekly photo and record routine
+  FIELD_WATCH.md             Rabi-season alert loop: flag, commit, check, tell, score
 src/
   fields.py                  Field boundary definitions
   pixel_purity.py            Pixel counts and pure-pixel share per field
@@ -117,6 +153,9 @@ src/
   gee_extract_sar.js         Earth Engine: Sentinel-1 RVI, every pass
   gee_extract_rain.js        Earth Engine: CHIRPS and ERA5-Land daily rain
   observability.py           Usable passes, gaps, ground-satellite pairs
+  gee_field_watch.js         Earth Engine: every 10 m pixel per field, rabi passes
+  field_watch.py             Weak patches inside a field; writes the alert log
+  cost_return.py             Cost and return per field; sales against MSP
   gee_extract_indices.js     First extraction (tile-wide cloud filter); kept for the record
   analyze.py                 Charts for the first extraction
 data/
@@ -128,6 +167,11 @@ data/
   crop_stage_log.csv         Weekly crop stage (template)
   harvest_log.csv            Pickings and harvest weights (template)
   farm_ledger.csv            Costs and sales per field (template)
+  field_owners.csv           Farmer code and family/other per field (no names)
+  field_alerts.csv           Field Watch alerts and what was found on the ground
+  farmer_feedback.csv        What was shown, what was said and decided
+  insurance_check.csv        Insured crop and area against mapped area
+  season_figures_2026.csv    Cost and return per field, worked out with the farmers
 output/                      Tables and charts written by the scripts
 ```
 
@@ -154,7 +198,14 @@ python src/observability.py data/roots_reflectance_s2_audit.csv \
     --sar data/roots_reflectance_sar.csv --rain data/roots_reflectance_rain.csv
 ```
 
-This writes `observability_by_field.csv`, `observability_passes.csv`,
+Field Watch and the farm figures:
+
+```
+python src/field_watch.py data/roots_reflectance_field_watch.csv
+python src/cost_return.py 600        # local daily wage (Rs 600 in these villages), used to value any family labour
+```
+
+The observability step writes `observability_by_field.csv`, `observability_passes.csv`,
 `ground_satellite_pairs.csv`, `radar_in_optical_gap.csv`,
 `rain_on_pass_days.csv`, `rain_by_month.csv`, one timeline chart and one
 optical/radar chart per zone into `output/`.

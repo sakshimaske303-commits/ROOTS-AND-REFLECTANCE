@@ -133,14 +133,13 @@
         "zone": "sawardoh",
         "field_num": 4,
         "field_id": "CHIFE",
-        "name": "Orange, Cotton, Pigeon Pea (Tur) & Turmeric",
+        "name": "Orange, Cotton & Pigeon Pea (Tur)",
         "area_ha": 0.8226,
         "sown": "2026-06-22",
         "crops": [
           "cotton",
           "tur",
-          "orange",
-          "turmeric"
+          "orange"
         ]
       },
       "geometry": {
