@@ -1,0 +1,18 @@
+record,area_ha,year,season,crop,irrigated_ha,unirrigated_ha,water_source,fallow_ha
+L1,0.78,2022-23,kharif,cotton,,0.75,,0.03
+L1,0.78,2023-24,kharif,soyabean,0.78,,well,
+L1,0.78,2023-24,summer,,,,,0.78
+L1,0.78,2024-25,kharif,cotton,0.78,,well on another survey number,
+L1,0.78,2024-25,rabi,wheat,0.78,,well on another survey number,
+L2,0.55,2022-23,kharif,cotton,,0.50,,0.05
+L2,0.55,2022-23,rabi,gram,0.50,,well,0.01
+L2,0.55,2023-24,kharif,cotton,0.55,,borewell,
+L2,0.55,2023-24,summer,,,,,0.55
+L2,0.55,2024-25,kharif,soyabean,0.55,,well,
+L2,0.55,2024-25,rabi,gram,0.55,,well,
+L3,0.72,,,,,,,
+L4,0.59,2022-23,kharif,cotton,,0.55,,0.04
+L4,0.59,2022-23,rabi,gram,0.50,,well on another survey number,0.04
+L4,0.59,2023-24,kharif,cotton,0.59,,well,
+L4,0.59,2023-24,summer,,,,,0.59
+L4,0.59,2024-25,kharif,cotton,0.59,,well on another survey number,

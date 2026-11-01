@@ -1,0 +1,2 @@
+alert_id,pass_date,zone,field,patch_pixels,patch_area_m2,centre_lat,centre_lon,patch_ndvi,field_median_ndvi,repeat
+2026-10-02_SAW4_1,2026-10-02,sawardoh,4,4,400,21.222727,78.351712,0.589,0.742,no
