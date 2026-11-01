@@ -3,8 +3,9 @@
 **What can a satellite actually know about a sub-hectare monsoon field?**
 
 Seven fields in Wardha district, Vidarbha (five in Sawardoh, two in
-Karanja Ghadge, both villages in Karanja taluka), cultivated by four farmers: some by my
-family and the others by neighbouring farmers. They were sown on 22 and 27 June 2026 with cotton, pigeon pea
+Karanja Ghadge, both villages in Karanja taluka), cultivated by five farmers: Sawardoh 2 and 3 by my family,
+Sawardoh 1 and 4 by one neighbouring farmer, and Sawardoh 5, Karanja Ghadge 1 and
+Karanja Ghadge 2 by one farmer each. They were sown on 22 and 27 June 2026 with cotton, pigeon pea
 and soyabean. The fields are 0.22 to about 1 ha. I visit them
 every week and photograph each one; this repo measures how much of that
 season the satellites could see, how many of their pixels really belong to
@@ -20,7 +21,7 @@ the year.
 The full design is in `docs/RESEARCH_DESIGN.md`. The weekly field routine
 is in `docs/FIELD_PROTOCOL.md`.
 
-## Where the work stands (8 Oct 2026)
+## Where the work stands (22 Oct 2026)
 
 Done, from data already in this repo:
 
@@ -72,15 +73,81 @@ Done, from data already in this repo:
 
 Farm records (from 11 Oct):
 
-- Who cultivates which field (codes only), one input bill (17 Sep), crop stage
-  notes, an insurance check for one farm and one round of farmer feedback are in
-  `data/`. Cotton and tur are still standing; cotton is picked in January.
-  Soyabean was harvested in early October; the quantity reported for Karanja 2
-  is being rechecked.
-- Cost and return per field for this season, worked out with each farmer from
-  regional costs and prices and confirmed by them (none keeps written
-  accounts): `data/season_figures_2026.csv`. Recorded figures replace these as
-  the farmers' own records come in.
+- Who farms each field (codes only), the input bills kept for our fields, crop
+  stage notes and an insurance check are in `data/`. Around 14 Oct I handed each
+  of the five farmers their field map, measured area and season figures in
+  person (`data/farmer_feedback.csv`). Soyabean was harvested in early October;
+  cotton picking began in late October and tur is still standing.
+- Farmer survey (25 Oct, a few figures checked again on 1 Nov): each farmer got a
+  two-page Marathi form with my estimate for their field printed on it and
+  confirmed or corrected each figure; I wrote the answers down and each farmer
+  signed or put a thumb impression on them. Answers in
+  `data/farmer_survey_2026.csv`; the typed forms, with signatures blurred, in
+  `docs/evidence/farmer_survey_2026_marathi.pdf` and
+  `docs/evidence/farmer_survey_2026_english.pdf`.
+- Cost and return per field from the survey (none of the five keeps written
+  accounts): `data/season_figures_2026.csv`. Across all seven fields the
+  combined margin is a loss of about Rs 65,150 this season against about
+  Rs 2.83 lakh in a normal year; six of the seven fields are at a loss, and
+  only field 5, which gets some canal water, is slightly positive. Cotton and
+  tur figures are for the expected harvest. Labour is hired, at Rs 600 a day
+  (cotton picking Rs 300 a day).
+- Insurance (`data/insurance_check.csv`): every field is insured, field 2 for its
+  orange trees only. All five farmers reported the drought loss at the
+  agriculture office on 1 Oct and a panchnama was done; no claim has been paid yet.
+
+Land records (from 24 Oct):
+
+- Certified 7/12 and 8-A extracts from July 2025 for four Sawardoh survey numbers,
+  with the village crop register (form 12) for 2022-23 to 2024-25. In this repo they
+  appear only as records L1 to L4 with area and crops (`data/land_record_crops.csv`);
+  the extracts themselves stay in `private/`.
+- Matching fields to records by crop history (`src/gee_crop_history.js`,
+  `src/crop_history.py`, 145 to 148 clear Sentinel-2 passes per field, June 2022 to May 2025).
+  Soyabean is bare by late October while cotton is still green, and wheat is still
+  green in late February when gram has been cut.
+  - Field 5, whose record is known, reads as cotton in all three kharif seasons, as
+    the register says. This is the check on the method, and it passes.
+  - Field 3 is record L1 on all four seasons tested: cotton 2022, soyabean 2023,
+    cotton 2024, wheat in rabi 2024-25. Its record area is 0.78 ha; walked, 0.777 ha.
+  - Fields 2 and 4 do not fit record L2. Both were bare by October 2022 and both
+    carried cotton through November 2024, where L2 lists cotton in 2022 and soyabean in
+    2024. So records L2 (0.55 ha) and L3 (0.72 ha) cannot yet be tied to fields 2
+    (0.88 ha) and 4 (0.82 ha), and their areas are 0.1 to 0.3 ha smaller than walked.
+  - The satellite also shows crops the register does not list: a rabi crop on field
+    3 after the 2023 soyabean, and summer crops on fields 2 and 4. The register
+    entries are marked as made through the mobile app.
+  `output/crop_history_match.csv`, `output/crop_history_sawardoh.png`
+- Field 5 (record L4): 0.59 ha on the record, 0.66 ha walked.
+- The register also shows the fields moving from rain-fed to well or borewell
+  irrigation in 2023-24.
+
+## The policy setting this season
+
+- Under PMFBY, technology-based yield estimation (YES-TECH) began with paddy and
+  wheat in Kharif 2023 and was extended to soybean from Kharif 2024, with 30%
+  weightage to be given to the YES-TECH yield (Lok Sabha Unstarred Question 383,
+  22 July 2025). I have not confirmed how it is applied in Wardha district.
+- In 2025 Maharashtra ended its Rs 1 crop insurance premium; farmers now pay the
+  central rates (2% of the sum insured for kharif crops, 5% for cotton). The state
+  also dropped four add-on covers, including localised calamity and mid-season
+  adversity, so losses are paid on the yield measured by crop-cutting
+  experiments, and for cotton half of that yield is to come from technology-based
+  estimates (Agrowon, 11 May 2025).
+- Enrolment in Maharashtra fell from 76.6 lakh farmers in Kharif 2024 to 46.0 lakh
+  in Kharif 2025 (PIB, 29 August 2026).
+- On 25 September 2026 the state declared drought in 265 of its 358 talukas
+  (Down To Earth). Karanja, the taluka of both villages, was not on that list; it
+  was among 40 talukas added in mid-October, which brought the total to 305
+  (Deccan Herald; The Hitavada, 15 Oct 2026). I still have to read the GR itself.
+- The state's crop-loan waiver of up to Rs 2 lakh per farmer (Punyashlok
+  Ahilyadevi Holkar Shetkari Karjmafi Yojana) covers crop loans taken between
+  April 2019 and March 2025; beneficiary lists have come out in rounds since
+  August 2026 (Agrowon).
+
+So for these fields the yield estimate is the only route to an insurance payout,
+and the satellite part of that estimate faced the 65 to 75 days without a usable
+look measured above.
 
 ## Season two: back to the field (from October 2026)
 
@@ -101,12 +168,31 @@ as they come.
 - **Insurance check.** With each farmer's permission: was the crop insured, for what
   area, against the area mapped on the ground, and was anything paid.
   `data/insurance_check.csv`
+- **Field cards.** One printed page per field, in Marathi, for the person farming it: the
+  walked boundary and its area (hectare, H-R as on the 7/12, acre, guntha), the days
+  the satellite could and could not see the field, the season's cost and return, what
+  is known about insurance, and a box for what is said and decided.
+  `src/field_card.py` writes them to `private/field_cards/`, outside git, because each
+  holds one farmer's money figures.
 - **Feedback.** What was shown to whom, what they said and decided, in one line each.
   `data/farmer_feedback.csv`
+- **Farmer survey.** A two-page printed form in Marathi for each farmer, filled in on a
+  visit: harvest and sale, crop insurance (crop, area, premium, claim), the e-crop survey,
+  the drought declaration and the loan waiver, what they did after seeing their card, and
+  a signed receipt for the map and figures. `src/feedback_form.py` prints the forms into
+  `private/feedback_forms/`; answers go into `data/farmer_survey_2026.csv` under the same
+  question ids.
+- **Policy note.** Two pages to the taluka agriculture office and the Krishi Vigyan
+  Kendra, Wardha (`docs/POLICY_NOTE.md`, not sent yet). The date sent and any reply go
+  in `data/outreach_log.csv`.
+- **Comparison.** How India's YES-TECH and the EU's satellite monitoring of farm
+  parcels under the Common Agricultural Policy deal with small parcels and cloud.
+  First draft: `docs/COMPARISON_EU_CAP.md`.
 
 Farmers appear only as codes (A, B, …). No names, faces, phone numbers or document
-numbers are kept in this repo; the key and any notes stay in `private/`, which is not
-in git.
+numbers are kept in this repo. The input bills for our fields are in `docs/evidence/`
+with names removed; the
+originals and any notes stay in `private/`, which is not in git.
 
 ## Known limits
 
@@ -144,6 +230,8 @@ docs/
   RESEARCH_DESIGN.md         Question, measurements, what would count as a result
   FIELD_PROTOCOL.md          Weekly photo and record routine
   FIELD_WATCH.md             Rabi-season alert loop: flag, commit, check, tell, score
+  POLICY_NOTE.md             Two-page note to the agriculture office and KVK (draft)
+  COMPARISON_EU_CAP.md       YES-TECH and the EU's Area Monitoring System, side by side
 src/
   fields.py                  Field boundary definitions
   pixel_purity.py            Pixel counts and pure-pixel share per field
@@ -156,6 +244,10 @@ src/
   gee_field_watch.js         Earth Engine: every 10 m pixel per field, rabi passes
   field_watch.py             Weak patches inside a field; writes the alert log
   cost_return.py             Cost and return per field; sales against MSP
+  field_card.py              One printable Marathi page per field for the farmer
+  feedback_form.py           Two-page Marathi survey and receipt per farmer
+  gee_crop_history.js        Earth Engine: every Sentinel-2 pass on the Sawardoh fields, 2022-25
+  crop_history.py            Matches each field to a land record by its past crops
   gee_extract_indices.js     First extraction (tile-wide cloud filter); kept for the record
   analyze.py                 Charts for the first extraction
 data/
@@ -172,6 +264,9 @@ data/
   farmer_feedback.csv        What was shown, what was said and decided
   insurance_check.csv        Insured crop and area against mapped area
   season_figures_2026.csv    Cost and return per field, worked out with the farmers
+  outreach_log.csv           Policy note: sent to whom, when, and any reply
+  farmer_survey_2026.csv     Answers to the printed survey, one row per farmer
+  land_record_crops.csv      Area and crops 2022-25 per land record (L1 to L4, no names or numbers)
 output/                      Tables and charts written by the scripts
 ```
 
@@ -203,6 +298,15 @@ Field Watch and the farm figures:
 ```
 python src/field_watch.py data/roots_reflectance_field_watch.csv
 python src/cost_return.py 600        # local daily wage (Rs 600 in these villages), used to value any family labour
+python src/field_card.py             # Marathi field cards into private/field_cards/, one file per farmer
+python src/feedback_form.py          # Marathi survey forms into private/feedback_forms/
+```
+
+Land records: run `gee_crop_history.js` in the Code Editor, save the export as
+`data/roots_reflectance_crop_history.csv`, then
+
+```
+python src/crop_history.py
 ```
 
 The observability step writes `observability_by_field.csv`, `observability_passes.csv`,

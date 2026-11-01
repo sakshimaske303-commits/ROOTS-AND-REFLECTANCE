@@ -1,7 +1,13 @@
 date,zone,field,crop,stage,height_cm,notes
-2026-10-11,sawardoh,1;2;3;4,cotton,standing (not yet picked),,from Papa: no pest or disease reported; one spray/input purchase on 17 Sep (see ledger)
+2026-10-11,sawardoh,1;2;3;4,cotton,standing (not yet picked),,from Papa: no pest or disease reported; one spray/input purchase on 17 Sep for our fields 2 and 3 (see ledger)
 2026-10-11,sawardoh,5,cotton,standing (not yet picked),,from Papa: cotton better than field 3 because that side got more water from a neighbour's borewell
 2026-10-11,karanja,2,soyabean,harvested,,from Papa: harvested; 28 q reported (to verify)
 2026-10-11,sawardoh,1;2;3;4;5,cotton,standing,,"from Papa: cotton picking expected in January 2027. Hybrids sown (mixed): Ankur, Rasi 779, Mahyco Jungee, Kabaddi"
-2026-10-11,karanja,1;2,soyabean,harvested,,"from Papa: soyabean harvested after the 29 Sep photo round; land left fallow until next season"
-2026-10-11,karanja,1,tur,standing,,"from Papa: tur still standing in Karanja 1; cotton and tur standing in all Sawardoh fields"
+2026-10-11,karanja,1;2,soyabean,harvested,,from Papa: soyabean harvested after the 29 Sep photo round; land left fallow until next season
+2026-10-11,karanja,1,tur,standing,,from Papa: tur still standing in Karanja 1; cotton and tur standing in all Sawardoh fields
+2026-10-22,sawardoh,4,cotton,boll development,,"my count, 10 plants: bolls per plant vary a lot, about 7-9 on some, 10-15 on others, about 20 on the bigger plants; about 98% green (closed); on one or two plants 6-7 bolls already open at the bottom; very few flowers"
+2026-10-22,sawardoh,1;2;3;4;5,cotton,boll development,,"my observation: the same stage in every Sawardoh field. Height differs: field 3 tallest; field 5 also tall and in better condition, it gets more water from the canal across the road; field 2 good but not as tall (possibly a different seed); field 4 tall but less than field 3"
+2026-10-22,sawardoh,all,cotton,irrigation,,"my observation: in the Sawardoh fields some water is given from a borewell, well or canal when available, now through pipes from a well; the crop is still mostly rain-fed"
+2026-11-01,sawardoh,3;5,cotton,picking started,,"from the farmer survey: picking started earlier than the January I expected; 2.5 q from fields 3 and 5 together so far (field 5 1.5 q, field 3 1.0 q); picking labour Rs 300/day"
+2026-11-01,sawardoh,1;2;4,cotton,standing,,from the farmer survey: picking not started yet in fields 1 and 4; will start soon
+2026-11-01,karanja,1,tur,standing,,"from the farmer survey: about 80% of the field is tur, with soyabean in rows between (about 20%)"

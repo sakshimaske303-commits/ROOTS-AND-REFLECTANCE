@@ -223,10 +223,9 @@ extraction is a manual Earth Engine Code Editor step, not automatic).
   radar passes and a rain panel.
 
 **11 Oct 2026** — *season two set up: taking the results back to the field*
-- Corrected how the fields are described. Not all seven are my family's:
-  some are farmed by neighbouring farmers in the two villages. The README,
-  research design and portfolio text now say so. Farmers appear only as
-  codes (A, B, ...); names and any notes stay in `private/`, outside git.
+- Wrote down who farms each field. Sawardoh 2 and 3 are my family's; the other
+  five are farmed by four neighbouring farmers. Farmers appear only as codes
+  (A, B, ...); names and any notes stay in `private/`, outside git.
 - Added Field Watch for the rabi season (`docs/FIELD_WATCH.md`):
   `src/gee_field_watch.js` exports every 10 m pixel per field and pass from
   1 Oct; `src/field_watch.py` flags weak patches inside a field and appends
@@ -241,9 +240,8 @@ extraction is a manual Earth Engine Code Editor step, not automatic).
   is the one left out.
 
 **11–17 Oct 2026** — *farm records and the farmers' side*
-- Recorded who cultivates which field (four farmers, codes A to D), the
-  17 Sep input bill, crop stages, an insurance check for Farmer A and the
-  first round of feedback. Orange is in fields 2 and 4; the trees are young
+- Recorded who farms each field (five farmers, codes A to E), the 17 Sep input
+  bill, crop stages, an insurance check and a first round of questions. Orange is in fields 2 and 4; the trees are young
   and start bearing next year. No turmeric was sown this year.
 - Cotton hybrids sown in Sawardoh (mixed): Ankur, Rasi 779, Mahyco Jungee and
   Kabaddi. Cotton and tur are still standing; cotton is picked in January.
@@ -255,3 +253,57 @@ extraction is a manual Earth Engine Code Editor step, not automatic).
   confirmed them: `data/season_figures_2026.csv`.
 - Gave each farmer their field map, measured area and season timeline. They
   agreed to keep records of costs and harvests from now on.
+
+**24 Oct 2026** — *land records*
+- Read the July 2025 7/12 and 8-A extracts for four Sawardoh survey numbers. Field 5's
+  record is 0.59 ha against 0.66 ha walked. The other three (0.78, 0.55, 0.72 ha) are
+  fields 2, 3 and 4 in some order; one of them is 40 to 60% smaller than any of those
+  fields, which GPS error and bunds cannot explain.
+- The crop register on the 7/12 has the crop on each survey number for three years. Two
+  records swapped soyabean and cotton between 2023 and 2024, so I wrote
+  `src/gee_crop_history.js` and `src/crop_history.py` to read each field's past
+  Sentinel-2 record and match it to a record, with field 5 as the check.
+- Areas and crops go into `data/land_record_crops.csv` as records L1 to L4. Survey
+  numbers and the extracts stay in `private/`.
+- Ran the crop history. Field 5 reads as cotton all three years, as its record says.
+  Field 3 matches record L1 on all four seasons (soyabean 2023, cotton 2024, wheat in
+  rabi), and its areas agree to 0.01 ha. Fields 2 and 4 fit neither remaining record's
+  crops: both were bare by October 2022 and both had cotton in 2024.
+
+**25 Oct – 1 Nov 2026** — *farmer survey*
+- On 25 Oct I gave each of the five farmers their field card and a two-page
+  Marathi survey form with my own estimate for their field printed in blue
+  (`private/estimate_whole_farm.py`, sources in `private/estimate_sources.md`).
+  They answered in person; I wrote the answers on paper and each farmer signed
+  or put a thumb impression on them. On 1 Nov I asked again where figures did
+  not fit. Answers are in `data/farmer_survey_2026.csv`; the typed forms in
+  Marathi and English, with signatures blurred, are in `docs/evidence/`.
+- The survey replaces the 14 Oct figures in `data/season_figures_2026.csv`. Those
+  used regional costs of about Rs 21,000 an acre for cotton; the farmers' own
+  costs came out at about Rs 37,000 to 41,000 an acre (about Rs 90,000 to
+  1 lakh a hectare). Across all seven fields the margin is now a loss of about
+  Rs 65,150 this season against about Rs 2.83 lakh in a normal year (the 14 Oct
+  figures gave Rs 35,500 against Rs 1.81 lakh for six fields). Six fields are at
+  a loss; field 5, which gets some canal water, is slightly positive.
+- Karanja 2: the 28 q of soyabean recorded on 11 Oct is withdrawn. Asked again,
+  the farmer's family gave 9 q (about 9.2 q/ha) and 20 q in a normal year.
+- Karanja 1 is about 80% tur with soyabean in rows between. The first soyabean
+  answers (4.0 q this year, 14.6 q in a normal year) could not come from about
+  0.16 ha of soyabean; asked again, the farmer confirmed 1.5 q and 3 q. Its costs
+  are approximate. It is insured as soyabean on the whole field.
+- Farmer B first said Rs 7,100 of government help had arrived, the figure I had
+  printed as an insurance estimate. Asked again: Rs 6,000 of regular PM-Kisan /
+  Namo Shetkari instalments, not drought relief.
+- Cotton picking started in late October, not January as I had noted: 1.0 q
+  from field 3 and 1.5 q from field 5 so far, at the farmers' union collection
+  centre. Nothing has been sold.
+- Insurance: every field is insured (field 2 for its orange trees). All five
+  reported the drought loss at the agriculture office on 1 Oct and a panchnama
+  was done. No claim has been paid. None of the farmers has had drought relief yet.
+- Rabi: farmers A and E will not sow this year because there is no rain; B, C
+  and D have not decided. So Field Watch may have little crop to watch on these
+  fields this rabi.
+- Method: most figures came back within a few percent of my printed estimate.
+  Where a farmer's own number differed, it differed a lot (Karanja 2, Farmer B's
+  government help), so I read the close matches as the farmer confirming my
+  estimate, not as a separate measurement.

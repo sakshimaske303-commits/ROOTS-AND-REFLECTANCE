@@ -1,8 +1,8 @@
 zone,field,farmer_code,crops,area_ha,cost_rs_per_ha,harvest_this_season,margin_rs_per_ha,margin_normal_year_rs_per_ha,status
-sawardoh,1,A,cotton;tur,0.2215,35900,cotton 0.8 q; tur 0.5 q,14700,53000,worked out with the farmer and confirmed (no written accounts)
-sawardoh,2,A,cotton;tur;orange,0.8792,32800,cotton 3.3 q; tur 1.0 q,9000,40100,worked out with the farmer and confirmed (no written accounts)
-sawardoh,3,A,cotton,0.7771,58100,cotton 4.9 q,-4000,54300,worked out with the farmer and confirmed (no written accounts)
-sawardoh,4,A,cotton;tur;orange,0.8226,37600,cotton 3.8 q; tur 0.5 q,7300,40300,worked out with the farmer and confirmed (no written accounts)
-sawardoh,5,B,cotton,0.6585,62900,cotton 7.3 q,32800,54300,worked out with the farmer and confirmed (no written accounts)
-karanja,1,C,soyabean;tur,0.786,38100,soyabean 4.0 q; tur 0.7 q,-200,29100,worked out with the farmer and confirmed (no written accounts)
-karanja,2,D,soyabean,0.9758,,,,,withheld: reported harvest (28 q) being rechecked
+sawardoh,1,E,cotton;tur,0.2215,101600,"cotton 2.2 q; tur 0.3 q (expected, crop standing)",-6800,93000,"farmer survey 25 Oct 2026, clarified 1 Nov 2026 (no written accounts)"
+sawardoh,2,A,cotton;tur;orange,0.8792,90800,"cotton 6.3 q; tur 1.5 q (expected, crop standing)",-15900,63200,"farmer survey 25 Oct 2026, clarified 1 Nov 2026 (no written accounts)"
+sawardoh,3,A,cotton,0.7771,98400,cotton 6.7 q (expected; 1.0 q picked so far),-26900,65800,"farmer survey 25 Oct 2026, clarified 1 Nov 2026 (no written accounts)"
+sawardoh,4,E,cotton;tur;orange,0.8226,91200,"cotton 6.1 q; tur 1.2 q (expected, crop standing)",-16500,61600,"farmer survey 25 Oct 2026, clarified 1 Nov 2026 (no written accounts)"
+sawardoh,5,B,cotton,0.6585,99600,cotton 7.5 q (expected; 1.5 q picked so far),6300,66700,"farmer survey 25 Oct 2026, clarified 1 Nov 2026 (no written accounts)"
+karanja,1,C,tur;soyabean,0.786,36900,"soyabean 1.5 q (harvested); tur 0.7 q (expected, crop standing)",-16900,11600,"farmer survey 25 Oct 2026, clarified 1 Nov 2026 (no written accounts); costs approximate"
+karanja,2,D,soyabean,0.9758,61500,soyabean 9 q (harvested),-6100,52900,"farmer survey 25 Oct 2026, clarified 1 Nov 2026 (no written accounts)"
