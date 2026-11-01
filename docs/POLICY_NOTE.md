@@ -19,8 +19,9 @@ assessed in a season like this one.
 
 ## What I found
 
-1. **The fields were not visible from orbit for most of the growing season.** Sentinel-2 passed
-   25 or 26 times after sowing. Each field was clear on only 3 to 5 of those passes. Between
+1. **The fields were not visible from orbit for most of the growing season.** Between sowing and
+   2 October Sentinel-2 passed 25 or 26 times, and each field was clear on only 3 to 5 of
+   those passes. Between
    14 July and mid-September there was no usable look at any field: 65 days for the Karanja
    Ghadge fields, 70 to 75 days for the Sawardoh fields. The crop grew from about NDVI 0.3 to
    0.7 or 0.8 inside that gap without a single observation.
@@ -33,7 +34,19 @@ assessed in a season like this one.
 4. **Rainfall depends on the dataset.** Two public rainfall products agree on July (about 350 to
    380 mm) and differ by about 60 mm for August (about 100 against 160 mm).
 5. **Insurance cover on the ground.** On one field only the young orange trees were insured;
-   the cotton in the same field was not.
+   the cotton in the same field was not. Another field is insured as soyabean on its whole
+   area although about 80% of it is tur this year.
+6. **This is usual for Vidarbha, not a bad year at two villages.** On 1,000 random cropland
+   points in ten Vidarbha districts, kharif 2019 to 2026, a 1 ha field went 60 days or more
+   without a usable optical look in 58% of seasons. In 2026, a dry season, more than half of
+   the points went at least 65 days.
+7. **The September greenness did not show the loss.** On these seven fields NDVI in late
+   September 2026 was within 15% of earlier seasons with the same crop, while the farmers
+   report harvests 49% to 77% below a normal year.
+8. **The loss is large and nothing has been paid yet.** By the farmers' own figures the seven
+   fields' margin is about Rs 3.48 lakh below a normal year, and six of the seven are at a
+   loss. All five farmers reported the loss at the agriculture office on 1 October and a
+   panchnama was done; as of 1 November no claim has been paid.
 
 ## What may help, at little cost
 
@@ -46,7 +59,8 @@ assessed in a season like this one.
 
 ## Limits
 
-Seven fields, two villages, one season. This is a measured case, not a survey of the taluka. I
+Seven fields, two villages, one season for the farm figures; the regional check covers
+observability only. I
 have not seen how YES-TECH is applied in Wardha district, so I make no claim about how that
 system performed. The figures describe the observation problem any such system has to work
 around on fields of this size.

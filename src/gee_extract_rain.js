@@ -1,10 +1,5 @@
-// ROOTS & REFLECTANCE — daily rainfall at the two field zones
-//
-// The satellite goes blind when it rains, and the crop responds to when it rains. This
-// pulls daily rainfall for both zones since sowing from two independent products:
-//   CHIRPS daily   satellite + rain-gauge blend, about 5.5 km cells (arrives a few weeks late)
-//   ERA5-Land      weather-model reanalysis, about 11 km cells (arrives about a week late)
-// Neither is a rain gauge in my field. They are regional estimates and can disagree.
+// ROOTS & REFLECTANCE: daily rain for both villages from CHIRPS (~5.5 km) and ERA5-Land (~11 km).
+// Neither is a gauge in my field, and they can disagree.
 
 var zones = ee.FeatureCollection([
   ee.Feature(ee.Geometry.Point([78.3505, 21.2221]), {zone: 'sawardoh'}),

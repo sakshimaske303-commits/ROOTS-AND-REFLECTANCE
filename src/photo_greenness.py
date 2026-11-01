@@ -1,24 +1,11 @@
 """
-ROOTS & REFLECTANCE — a greenness number from each ground photo.
+ROOTS & REFLECTANCE: a greenness number from each ground photo.
 
-The satellite gives me a number (NDVI). My photos so far give me a picture. To compare
-the two I need a number from the picture too. For every overview and crop photo this
-computes, over a fixed band of the frame:
-    gcc             green chromatic coordinate, G / (R + G + B), averaged over the band
-    green_fraction  share of pixels in the band that are "green vegetation" by the
-                    excess-green rule: 2g - r - b > 0.10, with r, g, b = each channel / (R+G+B)
+I take the green share of a fixed band of each photo. The photos are oblique and hand-framed,
+so this is indicative only, not canopy cover.
 
-The band is the part of the frame between 40% and 70% of the height: below the horizon
-and trees in a level shot, above the position stamp the camera app prints.
-
-What this is NOT: a measured canopy cover. These are oblique photos, framed by hand,
-taken at different times of day. An oblique view hides the soil between rows, so it
-overstates cover, and the light changes the colours. It is a relative, indicative series.
-Photos taken straight down from a fixed point (see docs/FIELD_PROTOCOL.md) are what will
-give a cover fraction that can be compared with NDVI properly.
-
-Usage:   python3 src/photo_greenness.py
-Output:  data/ground_photo_greenness.csv, output/ground_greenness_by_field.png
+Out: data/ground_photo_greenness.csv, output/ground_greenness_by_field.png
+Usage: python3 src/photo_greenness.py
 """
 import os
 

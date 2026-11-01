@@ -39,3 +39,11 @@ someone to walk there, find out what it is, and for the farmer to act?**
 Published: alert table, maps, ground photos of the crop (no people), scores, farmer codes (A, B, …).
 Not published: farmer names, faces, phone numbers, land record or bank details, interview notes.
 Those stay in `private/`, which is not in git.
+
+## Status (1 Nov 2026)
+
+The passes of 2, 7, 9 and 12 October gave seven alerts (two repeats). They were flagged on
+22 October, after the three-day window for a ground check, so they stay in
+`data/field_alerts.csv` as a record of the method and are not scored. Farmers A and E will
+not sow rabi this year (no rain); B, C and D have not decided. Scoring starts with the first
+rabi alert that is flagged and walked within three days.

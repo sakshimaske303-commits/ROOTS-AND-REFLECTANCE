@@ -1,23 +1,10 @@
 """
-ROOTS & REFLECTANCE — my analysis of the Sentinel-2 NDVI/NDRE time series I export
-from Earth Engine (see gee_extract_indices.js for how I pull the CSV).
+ROOTS & REFLECTANCE: charts from my first NDVI/NDRE export.
 
-Usage:
-    python3 analyze.py path/to/roots_reflectance_ndvi_ndre.csv
-    python3 analyze.py path/to/roots_reflectance_ndvi_ndre.csv path/to/roots_reflectance_sar.csv
+I plot NDVI and NDRE per field and per zone, and add radar RVI as a dashed line if I pass
+the SAR file. Output goes to output/.
 
-The second argument is optional: the Sentinel-1 SAR export (see
-gee_extract_sar.js). SAR isn't blocked by cloud cover, so when the optical
-record is stuck (as it has been since 14 Jul 2026 — see DEVELOPMENT_LOG.md),
-RVI still gives a cloud-proof read on canopy structure for that stretch. When
-given, its dates are overlaid on the same chart as a dashed line rather than
-folded into the NDVI numbers — RVI and NDVI aren't the same physical quantity,
-so this is a second, independent check, not an interpolation of the first.
-
-This gives me, in output/:
-    - one NDVI+NDRE (and RVI, if given) time-series chart per field (7 charts)
-    - one cross-field comparison chart per zone, grouped by crop mix
-    - a combined summary CSV with a few derived stats (peak NDVI date, etc.)
+Usage: python3 analyze.py data/roots_reflectance_ndvi_ndre.csv [data/roots_reflectance_sar.csv]
 """
 import sys
 import os
@@ -38,9 +25,7 @@ FIELD_LABELS = {
 def load(csv_path):
     df = pd.read_csv(csv_path)
     df['date'] = pd.to_datetime(df['date'])
-    # I noticed two adjacent Sentinel-2 orbit tiles sometimes both cover the same
-    # field on the same date, giving two near-identical rows — I average those
-    # down to one clean reading per field per date.
+    # two tiles on the same date: I average them to one reading
     static_cols = ['zone', 'field_num', 'field_id', 'name', 'area_ha', 'sown', 'crops']
     df = df.groupby(['zone', 'field_num', 'date'], as_index=False).agg(
         {**{c: 'first' for c in static_cols if c not in ('zone', 'field_num')},
@@ -51,9 +36,7 @@ def load(csv_path):
 
 
 def load_sar(sar_csv_path):
-    """Load the Sentinel-1 RVI export (see gee_extract_sar.js). Same duplicate-orbit
-    averaging as the optical load(), kept as a separate function since SAR and
-    optical extractions run independently and don't always share row shape."""
+    """Load the radar RVI export; same averaging as load()."""
     df = pd.read_csv(sar_csv_path)
     df['date'] = pd.to_datetime(df['date'])
     df = df.groupby(['zone', 'field_num', 'date'], as_index=False).agg({'RVI': 'mean'})
@@ -71,9 +54,7 @@ def plot_field(df, zone, field_num, out_dir, sar_df=None):
     if sar_df is not None:
         sar_sub = sar_df[(sar_df['zone'] == zone) & (sar_df['field_num'] == field_num)]
         if not sar_sub.empty:
-            # RVI is a different physical quantity from NDVI/NDRE — plotted dashed and
-            # separately labelled so it reads as a second, independent check, not
-            # another optical index on the same scale.
+            # RVI is a different quantity, so I draw it dashed
             ax.plot(sar_sub['date'], sar_sub['RVI'], marker='^', linestyle='--',
                      label='RVI (Sentinel-1 SAR, cloud-proof)', color='#c62828')
     ax.set_title(FIELD_LABELS.get((zone, field_num), f'{zone} field {field_num}'))

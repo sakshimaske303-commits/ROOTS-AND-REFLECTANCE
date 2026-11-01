@@ -1,0 +1,8 @@
+zone,field,crop_2026,ndvi_2026,passes_2026,ndvi_past_same_crop,past_seasons_used,ndvi_change_pct,farmer_yield_change_pct,note
+karanja,1,tur,0.755,4,0.717,2020 2021 2022 2023 2024 2025,5.3,-76.7,about 80% tur with soyabean rows; past seasons read by late-October greenness only
+karanja,2,soyabean,0.523,4,0.613,2024,-14.7,-55.0,
+sawardoh,1,cotton,0.72,3,0.716,2020 2021 2022 2023 2024 2025,0.6,-55.1,
+sawardoh,2,cotton,0.638,3,0.705,2020 2021 2023 2024 2025,-9.5,-57.1,young orange trees in the field keep NDVI up
+sawardoh,3,cotton,0.806,3,0.709,2020 2021 2022 2024 2025,13.7,-61.3,
+sawardoh,4,cotton,0.679,3,0.668,2020 2023 2024 2025,1.6,-55.5,young orange trees in the field keep NDVI up
+sawardoh,5,cotton,0.814,2,0.764,2021 2022 2023 2024 2025,6.5,-48.6,

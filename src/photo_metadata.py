@@ -1,23 +1,12 @@
 """
-ROOTS & REFLECTANCE — where and when was each ground photo taken?
+ROOTS & REFLECTANCE: where and when each ground photo was taken.
 
-My weekly photos are taken with a GPS camera app that prints the position and time on
-the picture itself (the EXIF GPS fields are empty). This script reads that stamp off
-every photo in geotagged_images/ with Tesseract OCR and writes one row per photo:
-    lat, lon, taken (local time), and which mapped field the position falls in
-    (or the nearest field and the distance to it, if it falls outside all of them).
+I read the position and time printed on each photo with Tesseract, match it to a field, and
+check how far each week's photo spot is from the usual one.
 
-It then joins the photo log (data/ground_photo_index.csv: which file fills which slot
-of the weekly log) so I can check two things I had only assumed so far:
-  1. is each "Field N overview" photo really taken in or beside Field N?
-     (I often stand on the bund between two fields, so the position can fall a few
-     metres inside the neighbour: the test is distance to the field, not containment.)
-  2. how far apart, week to week, are the positions I took a field's photo from?
-
-Usage:   python3 src/photo_metadata.py
-Needs:   tesseract on the PATH (https://github.com/tesseract-ocr/tesseract)
-Output:  data/ground_photo_positions.csv, output/photo_position_spread.csv,
-         output/photo_positions_sawardoh.png, output/photo_positions_karanja.png
+Needs: tesseract on the PATH
+Out:   data/ground_photo_positions.csv, output/photo_position_spread.csv, output/photo_positions_*.png
+Usage: python3 src/photo_metadata.py
 """
 import json
 import os
@@ -53,8 +42,7 @@ def _ocr(image, psm):
         os.unlink(t.name)
 
 
-# (threshold, page mode): plain inversion first, then hard thresholds on the white text.
-# Busy backgrounds behind the stamp (leaves, soil) defeat one setting and not another.
+# I try a few thresholds because leaves and soil behind the stamp confuse OCR
 ATTEMPTS = [(None, 6), (200, 6), (200, 11), (170, 11), (None, 11), (225, 6)]
 
 

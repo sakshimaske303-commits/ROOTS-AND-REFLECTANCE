@@ -1,26 +1,6 @@
-// ROOTS & REFLECTANCE — Field Watch (rabi season, from October 2026)
-//
-// The kharif audit (gee_observability_audit.js) showed that no field had a usable
-// optical look for 65 to 75 days of the monsoon. October to March is the clear
-// season. This script asks a second question: on a clear pass, can 10 m pixels point
-// at a weak patch INSIDE a field early enough for someone to walk there and look?
-//
-// It does not average a field. It exports every 10 m pixel inside each field, for
-// every Sentinel-2 pass in the window, with the same field-level usability test as
-// the audit. src/field_watch.py then finds the weak patches.
-//
-// One row per pass x field x pixel:
-//   date, time_utc, image_id, zone, field_num, lon, lat (pixel centre)
-//   NDVI           (B8 - B4) / (B8 + B4), both 10 m, NOT masked
-//   cs             Cloud Score+ clear-sky score
-//   usable         1 if this pixel passes the audit's test (cs >= 0.60, not cloud,
-//                  cirrus or shadow in SCL), else 0
-// NDRE is left out on purpose: Sawardoh field 1 has no pure 20 m pixel at all, and
-// for the others the 20 m grid gives too few pixels to locate a patch.
-//
-// Run in the Earth Engine Code Editor, start the export from the Tasks tab, then
-// download roots_reflectance_field_watch.csv from the ROOTS_REFLECTANCE Drive folder
-// into data/.
+// ROOTS & REFLECTANCE: Field Watch export. Every 10 m pixel inside each field, every Sentinel-2
+// pass since 1 Oct, with the audit's usability test. src/field_watch.py finds the weak patches.
+// I run it here, start the task, and save the CSV from Drive into data/.
 
 // ---- 1. Field geometries (same polygons as data/field_boundaries.geojson) ----
 var fields = ee.FeatureCollection([

@@ -1,25 +1,12 @@
 """
-ROOTS & REFLECTANCE — what could the satellite see of my fields, pass by pass?
+ROOTS & REFLECTANCE: what could the satellite see of my fields, pass by pass?
 
-Reads the audit exported by gee_observability_audit.js (every Sentinel-2 pass since
-sowing, with the share of each field that was usable) and answers:
-  - of all passes over a field, on how many was the field itself usable?
-  - how many of those did my old tile-wide rule (tile < 40% cloud) throw away,
-    and how many did it keep although the field was not usable?
-  - how long were the stretches with no usable look, and which weeks after sowing
-    went unobserved?
-  - does the field mean change when the 10 m edge strip is left out?
-  - which usable satellite dates have a ground photo within three days?
+From the Earth Engine audit I count usable looks per field, the longest blind stretch,
+what the tile-wide cloud rule kept or dropped, and which looks have a ground photo within
+three days. Radar and rainfall are optional.
 
-Usage:
-    python3 src/observability.py data/roots_reflectance_s2_audit.csv
-    python3 src/observability.py data/roots_reflectance_s2_audit.csv --sar data/roots_reflectance_sar.csv --rain data/roots_reflectance_rain.csv
-
-Output (in output/):
-    observability_by_field.csv, observability_passes.csv, ground_satellite_pairs.csv,
-    observation_timeline_sawardoh.png, observation_timeline_karanja.png
-    with --sar:  radar_in_optical_gap.csv, optical_radar_series_<zone>.png
-    with --rain: rain_on_pass_days.csv, rain_by_month.csv
+Usage: python3 src/observability.py data/roots_reflectance_s2_audit.csv [--sar FILE] [--rain FILE]
+Out:   output/ (tables and one timeline per zone)
 """
 import argparse
 import os
@@ -44,8 +31,7 @@ def load_audit(path):
     d = pd.read_csv(path)
     d["date"] = pd.to_datetime(d["date"])
     d["sown"] = pd.to_datetime(d["sown"])
-    # Cloud Score+ arrives a little after the image. A pass with no score yet has not
-    # been judged, so it is left out here and picked up on the next export.
+    # a pass with no Cloud Score+ yet is left out until the next export
     pending = d[d["cs"].isna()]["date"].dt.strftime("%Y-%m-%d").unique()
     if len(pending):
         print("passes left out because Cloud Score+ is not available yet:", ", ".join(sorted(pending)))

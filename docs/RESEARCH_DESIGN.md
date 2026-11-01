@@ -5,7 +5,7 @@
 During a monsoon season, what can a satellite actually know about a field of less than one hectare,
 when, and how far can that be trusted?
 
-I can answer this for these seven fields, some my family's and some our neighbours', because I hold three things that satellite studies of large
+I can answer this for these seven fields, two my family's and five farmed by neighbouring farmers, because I hold three things that satellite studies of large
 areas usually do not: the sowing date of each field, the field boundary walked on the ground, and
 a look at the crop from the ground every week.
 
@@ -25,6 +25,14 @@ replication. The crop-mix comparison stays in the project as description, not as
 
 Rainfall (`src/gee_extract_rain.js`) is the context for both: it is why the optical sensor is blind
 and it is what the crop responds to.
+
+## Beyond the seven fields
+
+| # | Question | Design | Where |
+|---|---|---|---|
+| 5 | Is the blind stretch usual? | Measurement 2 on 100 random cropland points in each of ten Vidarbha districts, kharif 2019 to 2026, with a 0.25, 1 and 4 ha square field at each point. Field size compared within point and season; rainfall with point and season fixed effects; errors clustered by point | `src/gee_regional_observability.js`, `src/regional_observability.py` |
+| 6 | Did the satellite see the loss? | Each field's NDVI, 15 Sep to 5 Oct 2026, against its own past seasons with the same kind of crop, beside the harvest drop the farmer reported | `src/gee_ndvi_history.js`, `src/loss_proxy.py` |
+| 7 | What has insurance covered? | Fall in margin per field against the claim paid, rerun as claims settle | `src/basis_risk.py` |
 
 ## The same work, read as economics
 
@@ -52,7 +60,12 @@ against the scheme's own documents or government statements.
   (see `docs/FIELD_PROTOCOL.md`) are needed for that.
 - Yield from satellite data. The harvest log will give the yields; relating them to the
   satellite series with seven fields would be curve-fitting.
-- Anything beyond these seven fields in two villages.
+- Anything beyond these seven fields in two villages, except for observability, which
+  measurement 5 takes to random cropland points in ten Vidarbha districts. The fields were chosen
+  because I can reach them every week (two my family's, five of neighbours who agreed),
+  so they are not a random sample.
+- That a weak September NDVI caused a low harvest, or the reverse. Measurement 6 sets the
+  two side by side for seven fields; it is a check, not a model.
 
 ## Season two: what changes when the results go back to the field
 
@@ -61,6 +74,13 @@ is written down and committed first, then checked on the ground, then shown to t
 and the farmer's decision is recorded (`docs/FIELD_WATCH.md`). Alongside it, the farm
 ledger, harvest log and an insurance check per field put the season into rupees.
 
+Each farmer also gets a printed card for each of their fields (`src/field_card.py`) with the
+boundary, the area, the days the satellite could not see the field, the season's figures and
+what is known about insurance. What they say and decide is written down the same day. A two-page
+note goes to the taluka agriculture office and the Krishi Vigyan Kendra
+(`docs/POLICY_NOTE.md`), and any reply is logged.
+
 What would count as a result: the share of alerts confirmed on the ground, the false-alarm
-rate, how many led to an action, and the cost and return per field. With seven fields this
-stays a documented case. A farmer declining to take part is recorded as such.
+rate, how many led to an action, how many farmers checked or changed something after seeing
+their card, and the cost and return per field. With seven fields this stays a documented case.
+A farmer declining to take part is recorded as such.

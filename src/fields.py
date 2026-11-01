@@ -1,12 +1,7 @@
 """
-Field boundary definitions for ROOTS & REFLECTANCE.
+ROOTS & REFLECTANCE: my seven field boundaries.
 
-I copied these coordinates straight from my portfolio (GEOSPATIAL-PORTFOLIO/index.html,
-RR_SAWARDOH_POINTS / RR_SAWARDOH_PATCHES / RR_KARANJA_POINTS / RR_KARANJA_PATCHES) so my
-satellite analysis always lines up with what I've mapped there. If I ever correct a
-boundary on the portfolio side, I mirror the change here too.
-
-Coordinate format: [latitude, longitude] — same convention I use for Leaflet on the portfolio.
+Copied from the portfolio map, so both always match. Points are [lat, lon].
 """
 
 SAWARDOH_POINTS = {

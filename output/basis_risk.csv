@@ -1,0 +1,8 @@
+zone,field,farmer_code,area_ha,crop_insured,premium_rs,margin_fall_rs,claim_paid_rs,paid_rs,uncovered_rs
+sawardoh,1,E,0.2215,cotton,400,22100.0,0 so far,0.0,22100.0
+sawardoh,2,A,0.8792,orange,,69500.0,not known,,
+sawardoh,3,A,0.7771,cotton,about 600-1500,72000.0,not known,,
+sawardoh,4,E,0.8226,cotton,1200,64200.0,0 so far,0.0,64200.0
+sawardoh,5,B,0.6585,cotton,1300,39800.0,0 so far,0.0,39800.0
+karanja,1,C,0.786,soyabean,800,22400.0,0 so far,0.0,22400.0
+karanja,2,D,0.9758,soyabean,1000,57600.0,0 so far,0.0,57600.0

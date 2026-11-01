@@ -51,5 +51,12 @@ after the ground visit.
 Worked out with each farmer from regional costs (Vidarbha reports), normal yields from
 published state figures reduced by about 45% for this drought season, and 2026-27 MSP /
 early-October market prices, then gone through and confirmed by the farmer. None of the
-four farmers keeps written accounts, so these are not recorded figures. Each row is
+five farmers keeps written accounts, so these are not recorded figures. Each row is
 replaced by recorded figures when the farmer's own records arrive.
+
+## farmer_survey_2026.csv: answers to the printed survey, one row per farmer
+
+The columns follow the question ids on the form (`src/feedback_form.py`): q1 to q20, then
+consent and the proof collected on the visit. Money is in rupees, harvest in quintals,
+area in hectares. A question the farmer did not answer stays empty. No names or document
+numbers.

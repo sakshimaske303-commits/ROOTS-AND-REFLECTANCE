@@ -4,6 +4,7 @@ numpy>=1.24
 shapely>=2.0
 pyproj>=3.4
 Pillow>=9.0
+scipy>=1.10
 # photo_metadata.py also needs the Tesseract OCR program on the PATH
 # (https://github.com/tesseract-ocr/tesseract); it is not a Python package.
 # To lock the exact versions behind a given run, I save `pip freeze` to

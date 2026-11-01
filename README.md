@@ -21,7 +21,7 @@ the year.
 The full design is in `docs/RESEARCH_DESIGN.md`. The weekly field routine
 is in `docs/FIELD_PROTOCOL.md`.
 
-## Where the work stands (22 Oct 2026)
+## Where the work stands (1 Nov 2026)
 
 Done, from data already in this repo:
 
@@ -78,10 +78,10 @@ Farm records (from 11 Oct):
   of the five farmers their field map, measured area and season figures in
   person (`data/farmer_feedback.csv`). Soyabean was harvested in early October;
   cotton picking began in late October and tur is still standing.
-- Farmer survey (25 Oct, a few figures checked again on 1 Nov): each farmer got a
-  two-page Marathi form with my estimate for their field printed on it and
-  confirmed or corrected each figure; I wrote the answers down and each farmer
-  signed or put a thumb impression on them. Answers in
+- Farmer survey (25 Oct, a few figures checked again on 1 Nov): each farmer
+  answered a two-page Marathi form in person with their own figures for cost,
+  harvest, a normal year, insurance and government support, and signed or put a
+  thumb impression under their answers. Answers in
   `data/farmer_survey_2026.csv`; the typed forms, with signatures blurred, in
   `docs/evidence/farmer_survey_2026_marathi.pdf` and
   `docs/evidence/farmer_survey_2026_english.pdf`.
@@ -122,6 +122,51 @@ Land records (from 24 Oct):
 - The register also shows the fields moving from rain-fed to well or borewell
   irrigation in 2023-24.
 
+## Beyond the seven fields (1 Nov 2026)
+
+**Is the blind spot usual?** The same usable-look rule on 1,000 random cropland points
+(ESA WorldCover) in ten of the eleven Vidarbha districts, kharif 2019 to 2026, with a
+0.25, 1 and 4 ha square field at each point. Gadchiroli is spelled differently in the
+boundary dataset and was not matched. Window: 22 June to 15 October.
+`src/gee_regional_observability.js`, `src/regional_observability.py`, `output/regional/`
+
+- For a 1 ha field the longest stretch without a usable look had a median of 63 days
+  over all 8,000 point-seasons, and was 60 days or more in 58% of them. The median by
+  season ran from 50 days (2021) to 69 (2024).
+- 2026: median 67 days; 55% of points had a stretch at least as long as my shortest
+  field (65 days). This in a season with a median of about 770 mm of June to September
+  rain (CHIRPS), against 1,010 to 1,460 mm in the other seasons.
+- In 19% of point-seasons a 1 ha field had no usable look at all between 15 July and
+  15 September. All seven of my fields were in that group in 2026; 26% of points were.
+- Field size, at the same point in the same season: a 0.25 ha field had 0.13 more
+  usable looks than a 1 ha field and a longest stretch 1.1 days shorter; a 4 ha field
+  0.22 fewer and 1.7 days longer (p < 0.001, errors clustered by point). Size hardly
+  changes how often a field is seen; it changes how many pure pixels the look rests on.
+- Rainfall, with point and season fixed effects: 100 mm more June to September rain at a
+  point goes with 0.13 fewer usable looks (95% interval 0.08 to 0.17) and no clear
+  change in the longest stretch.
+- Sentinel-2 passed more often in 2025 and 2026 (a median of 28 to 29 pass days against
+  23 to 24 before), so counts of looks are not like for like across seasons. The longest
+  stretch did not get shorter.
+
+**Did the satellite see the loss the farmers reported?** Each field's NDVI from
+15 September to 5 October 2026 against the same field in past seasons with the same kind
+of crop, read from late-October greenness (`src/gee_ndvi_history.js`,
+`src/loss_proxy.py`, `output/loss_proxy.csv`, `output/loss_proxy.png`).
+
+- September NDVI in 2026 was between 15% below and 14% above each field's past seasons.
+  The harvest the farmers reported is 49% to 77% below a normal year.
+- A greenness reading in September would not have shown this loss. NDVI is not yield,
+  cotton and tur are still standing, and Karanja 2 has only one past soyabean season
+  (2024) to compare with.
+
+**What has insurance covered?** The fall in margin per field against the claim paid
+(`src/basis_risk.py`, `output/basis_risk.csv`). As of 1 Nov 2026 the seven fields' margin
+is about Rs 3.48 lakh below a normal year; on the five fields where the farmer knows the
+answer, nothing has been paid yet (a fall of Rs 2.06 lakh on those fields). Crop
+insurance pays on a yield shortfall, not on margin, so the two are not expected to match.
+The table is rerun when a claim is settled.
+
 ## The policy setting this season
 
 - Under PMFBY, technology-based yield estimation (YES-TECH) began with paddy and
@@ -160,7 +205,12 @@ as they come.
   weak patches inside each field. Each alert is committed before anyone walks there,
   then checked on the ground and shown to the farmer. Scored at the end of the season
   as alerts issued, confirmed and acted on, with the false-alarm rate.
-  `src/gee_field_watch.js`, `src/field_watch.py`, `data/field_alerts.csv`
+  `src/gee_field_watch.js`, `src/field_watch.py`, `data/field_alerts.csv`.
+  Status, 1 Nov: the seven alerts from the passes of 2 to 12 October were flagged on
+  22 October, after the three-day window for a ground check, so they are kept as a
+  record of the method and not scored. Farmers A and E will not sow rabi this year
+  (no rain); B, C and D have not decided. Scoring starts with the first rabi pass
+  that is flagged and walked within three days.
 - **What the season cost.** Cost and return per field and per hectare from the farm
   ledger and harvest log, with family labour counted in days and, separately, valued at
   a local wage; prices received set against the 2026-27 MSP.
@@ -220,8 +270,15 @@ originals and any notes stay in `private/`, which is not in git.
 - A 356 m² triangle between Sawardoh fields 1, 2 and 4 belongs to no field
   in `data/field_boundaries.geojson`. It is a shed (confirmed on the ground,
   Oct 2026), so it is correctly left out.
-- Seven fields, two villages, one season. This is a measured case, not a
-  sample of Vidarbha.
+- Seven fields, two villages, one season. The fields were chosen because I can
+  reach them every week: two are my family's and five belong to neighbouring
+  farmers who agreed to take part. They are not a random sample, and the farm
+  figures describe these fields only. The regional audit takes the observability
+  question, and only that question, to random cropland points in ten Vidarbha
+  districts.
+- The farm figures are the farmers' own answers; none of them keeps written
+  accounts. Cotton and tur are still standing, so their harvest is what the
+  farmer expects; actual weights and sale prices replace it as they come in.
 
 ## Structure
 
@@ -248,6 +305,11 @@ src/
   feedback_form.py           Two-page Marathi survey and receipt per farmer
   gee_crop_history.js        Earth Engine: every Sentinel-2 pass on the Sawardoh fields, 2022-25
   crop_history.py            Matches each field to a land record by its past crops
+  gee_regional_observability.js  Earth Engine: random cropland points across Vidarbha, kharif 2019-26
+  regional_observability.py  Blind stretches by season and district; field size and rainfall regressions
+  gee_ndvi_history.js        Earth Engine: every pass on all seven fields since 2019
+  loss_proxy.py              September NDVI against past seasons, beside the farmers' reported loss
+  basis_risk.py              Fall in margin per field against the claim paid
   gee_extract_indices.js     First extraction (tile-wide cloud filter); kept for the record
   analyze.py                 Charts for the first extraction
 data/
@@ -263,10 +325,11 @@ data/
   field_alerts.csv           Field Watch alerts and what was found on the ground
   farmer_feedback.csv        What was shown, what was said and decided
   insurance_check.csv        Insured crop and area against mapped area
-  season_figures_2026.csv    Cost and return per field, worked out with the farmers
+  season_figures_2026.csv    Cost and return per field, from the farmer survey
   outreach_log.csv           Policy note: sent to whom, when, and any reply
   farmer_survey_2026.csv     Answers to the printed survey, one row per farmer
   land_record_crops.csv      Area and crops 2022-25 per land record (L1 to L4, no names or numbers)
+  regional/                  Exports of gee_regional_observability.js (points and passes per season)
 output/                      Tables and charts written by the scripts
 ```
 
@@ -307,6 +370,16 @@ Land records: run `gee_crop_history.js` in the Code Editor, save the export as
 
 ```
 python src/crop_history.py
+```
+
+Beyond the seven fields: run `gee_regional_observability.js` (one export for the points
+and one per season, saved in `data/regional/`) and `gee_ndvi_history.js` (saved as
+`data/roots_reflectance_ndvi_history.csv`), then
+
+```
+python src/regional_observability.py
+python src/loss_proxy.py
+python src/basis_risk.py
 ```
 
 The observability step writes `observability_by_field.csv`, `observability_passes.csv`,

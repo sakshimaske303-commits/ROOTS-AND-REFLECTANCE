@@ -1,6 +1,4 @@
-// ROOTS & REFLECTANCE — Sentinel-2 NDVI/NDRE extraction
-// I cloud-mask Sentinel-2 SR over all 7 of my field boundaries, compute NDVI + NDRE
-// per field per date, and export it all as one CSV table.
+// ROOTS & REFLECTANCE: my first NDVI/NDRE export (tile-wide cloud filter). Kept for the record.
 
 // ---- 1. Field geometries ----
 var fields = ee.FeatureCollection([

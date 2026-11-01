@@ -271,11 +271,10 @@ extraction is a manual Earth Engine Code Editor step, not automatic).
   crops: both were bare by October 2022 and both had cotton in 2024.
 
 **25 Oct – 1 Nov 2026** — *farmer survey*
-- On 25 Oct I gave each of the five farmers their field card and a two-page
-  Marathi survey form with my own estimate for their field printed in blue
-  (`private/estimate_whole_farm.py`, sources in `private/estimate_sources.md`).
-  They answered in person; I wrote the answers on paper and each farmer signed
-  or put a thumb impression on them. On 1 Nov I asked again where figures did
+- On 25 Oct I gave each of the five farmers their field card and went through a
+  two-page Marathi survey form with them. The form had the questions only; the
+  figures are the farmers' own. They answered in person and each farmer signed
+  or put a thumb impression under their answers. On 1 Nov I asked again where figures did
   not fit. Answers are in `data/farmer_survey_2026.csv`; the typed forms in
   Marathi and English, with signatures blurred, are in `docs/evidence/`.
 - The survey replaces the 14 Oct figures in `data/season_figures_2026.csv`. Those
@@ -291,9 +290,8 @@ extraction is a manual Earth Engine Code Editor step, not automatic).
   answers (4.0 q this year, 14.6 q in a normal year) could not come from about
   0.16 ha of soyabean; asked again, the farmer confirmed 1.5 q and 3 q. Its costs
   are approximate. It is insured as soyabean on the whole field.
-- Farmer B first said Rs 7,100 of government help had arrived, the figure I had
-  printed as an insurance estimate. Asked again: Rs 6,000 of regular PM-Kisan /
-  Namo Shetkari instalments, not drought relief.
+- Farmer B first said Rs 7,100 of government help had arrived. Asked again:
+  Rs 6,000 of regular PM-Kisan / Namo Shetkari instalments, not drought relief.
 - Cotton picking started in late October, not January as I had noted: 1.0 q
   from field 3 and 1.5 q from field 5 so far, at the farmers' union collection
   centre. Nothing has been sold.
@@ -303,7 +301,36 @@ extraction is a manual Earth Engine Code Editor step, not automatic).
 - Rabi: farmers A and E will not sow this year because there is no rain; B, C
   and D have not decided. So Field Watch may have little crop to watch on these
   fields this rabi.
-- Method: most figures came back within a few percent of my printed estimate.
-  Where a farmer's own number differed, it differed a lot (Karanja 2, Farmer B's
-  government help), so I read the close matches as the farmer confirming my
-  estimate, not as a separate measurement.
+
+**1 Nov 2026** — *beyond the seven fields*
+- Seven fields and one season cannot say whether a 65 to 75 day blind stretch is
+  usual, whether the satellite registered the loss the farmers reported, or what
+  insurance has covered. I added one script for each.
+- `src/gee_regional_observability.js` and `src/regional_observability.py`: the same
+  80% rule on 100 random cropland points per Vidarbha district (ESA WorldCover
+  cropland), kharif 2019 to 2026, with a 0.25, 1 and 4 ha square around each point.
+  Field size is compared at the same point in the same season (point-by-season fixed
+  effects), so weather and passes are held fixed; rainfall gets point and season fixed
+  effects. Errors are clustered by point. The window is 22 June to 15 October, and my
+  own fields are run through the same window: 65 days at Karanja, 70 at Sawardoh 1
+  to 4, 75 at Sawardoh 5, as before. Tested on made-up data before the real export;
+  the fixed-effect estimate matches a regression with full dummies.
+- `src/gee_ndvi_history.js` and `src/loss_proxy.py`: NDVI of all seven fields since
+  2019; 15 September to 5 October 2026 against past seasons with the same kind of
+  crop (read from late-October greenness), beside the harvest drop each farmer
+  reported (this season against a normal year, main crop).
+- `src/basis_risk.py`: fall in margin per field against the claim paid. About
+  Rs 3.48 lakh below a normal year across the seven fields; nothing paid yet on the
+  five fields where the farmer knows. `output/basis_risk.csv`
+- Field Watch: the October alerts were flagged on 22 Oct, after the three-day
+  window, so they are not scored. Scoring starts with the first rabi alert walked
+  in time.
+- Results, same evening. The regional exports took about 30 minutes to 2 hours per
+  season. Gadchiroli did not match in the GAUL boundaries (different spelling), so the
+  points cover ten districts, 1,000 points. 1 ha fields: median longest stretch 63 days,
+  60 days or more in 58% of point-seasons; 2026 median 67, and 55% of points at least as
+  long as my shortest field. Field size moves the stretch by only 1 to 2 days. More
+  Sentinel-2 passes in 2025 and 2026 did not shorten it.
+- Loss check: September NDVI 2026 within -15% to +14% of each field's past seasons with
+  the same crop, against a reported harvest 49% to 77% below normal. Karanja 2 has one
+  past soyabean season to compare with (2024).

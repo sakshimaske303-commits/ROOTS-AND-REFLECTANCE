@@ -1,34 +1,13 @@
 """
-ROOTS & REFLECTANCE — Field Watch: weak patches inside a field, flagged before anyone walks there.
+ROOTS & REFLECTANCE: Field Watch. I flag weak patches inside a field before anyone walks there.
 
-Input:  data/roots_reflectance_field_watch.csv   (from src/gee_field_watch.js)
-        data/field_boundaries.geojson
-Output: output/field_watch/passes.csv            every pass x field: usable share, median NDVI
-        output/field_watch/patches_<date>.csv     the patches flagged on that pass
-        output/field_watch/map_<zone>_<date>.png  pixel map with the flagged patches outlined
-        data/field_alerts.csv                     one new row per new patch, status 'flagged'
-                                                  (ground columns stay empty until the visit)
+A patch is 3 or more touching interior pixels whose NDVI is 0.10 below the field median on a
+usable pass. A patch seen again on the next usable pass is a repeat. I commit
+data/field_alerts.csv before the ground visit.
 
-How a patch is flagged (all thresholds are set below and can be rerun at other values):
-  1. The pass must be usable for the field: at least 80% of its pixels pass the
-     Cloud Score+ / SCL test (the same rule as the kharif audit).
-  2. Only interior pixels count: pixel centre at least 7.1 m inside the boundary, so
-     the whole 10 m pixel lies in the field (half a diagonal of a 10 m square).
-  3. A pixel is weak when its NDVI is at least DROP below the median of the field's
-     interior pixels on that pass.
-  4. Weak pixels that touch each other (8-neighbours on the 10 m grid) form a patch.
-     A patch needs at least MIN_PIXELS pixels (3 pixels = 300 m2).
-  5. A patch that overlaps a patch from the field's previous usable pass is marked
-     'repeat'. Repeats are the stronger signal; one-pass patches can be haze or a
-     shadow the masks missed.
-
-The alert is written to data/field_alerts.csv (and should be committed) BEFORE the
-ground visit, so the commit time shows the satellite call came first.
-
-No geometry library is needed: at field scale (under 200 m) a local flat projection
-around each field is accurate to a few centimetres.
-
-Usage:  python src/field_watch.py [data/roots_reflectance_field_watch.csv]
+In:  data/roots_reflectance_field_watch.csv (from src/gee_field_watch.js)
+Out: data/field_alerts.csv, output/field_watch/
+Usage: python src/field_watch.py [data/roots_reflectance_field_watch.csv]
 """
 import csv
 import json

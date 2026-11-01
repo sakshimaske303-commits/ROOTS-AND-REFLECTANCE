@@ -1,18 +1,11 @@
 """
-ROOTS & REFLECTANCE — how many Sentinel-2 pixels does each of my fields really have?
+ROOTS & REFLECTANCE: how many Sentinel-2 pixels each field really has.
 
-A field mean from a satellite is only as good as the pixels under it. My fields are
-0.2 to 1 ha, and a Sentinel-2 pixel is 10 m (red, NIR) or 20 m (red-edge, SCL cloud
-classes). Pixels on the boundary mix my crop with the bund, the road or the neighbour.
+I lay the real 10 m and 20 m pixel grid over each boundary and count pixels whose centre is
+inside, and pixels that lie wholly inside (pure).
 
-For every field this script lays the real Sentinel-2 pixel grid (UTM zone 44N, the grid
-the tiles are delivered on) over the boundary and counts, at 10 m and at 20 m:
-    centre_in   pixels whose centre falls inside the field (what a zonal mean uses)
-    pure        pixels that lie wholly inside the field
-    purity      pure / centre_in
-
-Usage:   python3 src/pixel_purity.py
-Output:  output/pixel_purity.csv, output/pixel_grid_sawardoh.png, output/pixel_grid_karanja.png
+Out: output/pixel_purity.csv, output/pixel_grid_*.png
+Usage: python3 src/pixel_purity.py
 """
 import json
 import os
@@ -75,8 +68,7 @@ def main():
             r[f"centre_in_{size}m"] = len(cin)
             r[f"pure_{size}m"] = len(pure)
             r[f"purity_{size}m"] = round(len(pure) / len(cin), 2) if cin else np.nan
-        # how far inside the boundary is the innermost point: a field narrower than
-        # two pixels has no pure pixel at all
+        # a field narrower than two pixels has no pure pixel
         r["max_inset_m"] = round(max(d for d in np.arange(0, 80, 0.5) if not poly.buffer(-d).is_empty), 1)
         rows.append(r)
     df = pd.DataFrame(rows)

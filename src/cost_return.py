@@ -1,25 +1,12 @@
 """
-ROOTS & REFLECTANCE — what the season cost and returned, per field and per hectare.
+ROOTS & REFLECTANCE: what the season cost and returned, per field and per hectare.
 
-Input:  data/farm_ledger.csv, data/harvest_log.csv, data/field_boundaries.geojson
-Output: output/cost_return_by_field.csv
-        output/sales_vs_msp.csv
+I share a cost written against several fields ("1;3" or "all") by area. Family labour is
+counted in days and valued only if I pass a daily wage. MSP 2026-27 is a reference line.
 
-Rules
-  - A cost written against several fields ("1;3") or "all" is shared by area, within
-    the zone named on that row.
-  - Paid costs and own inputs are kept apart. Family labour has no cash price; it is
-    counted in person-days, and valued only if OWN_LABOUR_RS_PER_DAY is set (pass a
-    local daily wage on the command line). Both versions are written, so the cash
-    picture and the full-cost picture can be read side by side.
-  - Revenue counts what was sold, at the price received. Produce kept at home is
-    reported in kg and valued at the field's own average sale price for that crop,
-    in a separate column.
-  - MSP is the Centre's 2026-27 kharif minimum support price (PIB, 13 May 2026), used
-    only as a reference line for the price received. Cotton is compared with the
-    medium-staple MSP unless the harvest row says "long staple" in notes.
-
-Usage:  python src/cost_return.py [OWN_LABOUR_RS_PER_DAY]
+In:  data/farm_ledger.csv, data/harvest_log.csv, data/field_boundaries.geojson
+Out: output/cost_return_by_field.csv, output/sales_vs_msp.csv
+Usage: python src/cost_return.py [WAGE_RS_PER_DAY]
 """
 import json
 import os

@@ -1,6 +1,14 @@
 date,zone,field,category,item,quantity,unit,amount_rs,paid_or_own,notes
-2026-09-17,sawardoh,1;2;3;4,fertiliser,Nano Vigore 1 g (Gio Life) growth promoter,3,packet,1350,paid,bill IK-3835 (agri input shop in Karanja); field not on bill so shared by area across Farmer A's fields
-2026-09-17,sawardoh,1;2;3;4,other,Balance Flower 50 g (plant growth product),3,packet,750,paid,bill IK-3835; incl. GST
-2026-09-17,sawardoh,1;2;3;4,pesticide,Fiplam 400 ml (Rallis),3,bottle,3030,paid,bill IK-3835; incl. GST
-2026-09-17,sawardoh,1;2;3;4,pesticide,Antracol 1 kg (Bayer) fungicide,1,kg,720,paid,bill IK-3835; incl. GST
-2026-09-17,sawardoh,1;2;3;4,fertiliser,00:52:34 water-soluble fertiliser (ICL),3,kg,840,paid,bill IK-3835; incl. GST; bill total Rs 6690
+2026-09-17,sawardoh,2;3,fertiliser,Nano Vigore 1 g (Gio Life) growth promoter,3,packet,1350,paid,bill IK-3835 (agri input shop in Karanja); field not on bill so shared by area across our two fields (2 and 3)
+2026-09-17,sawardoh,2;3,other,Balance Flower 50 g (plant growth product),3,packet,750,paid,bill IK-3835; incl. GST
+2026-09-17,sawardoh,2;3,pesticide,Fiplam 400 ml (Rallis),3,bottle,3030,paid,bill IK-3835; incl. GST
+2026-09-17,sawardoh,2;3,pesticide,Antracol 1 kg (Bayer) fungicide,1,kg,720,paid,bill IK-3835; incl. GST
+2026-09-17,sawardoh,2;3,fertiliser,00:52:34 water-soluble fertiliser (ICL),3,kg,840,paid,bill IK-3835; incl. GST; bill total Rs 6690
+2026-10-20,sawardoh,2;3,pesticide,Jashn Super 1 L (Rallis),2,bottle,1400,paid,bill PEST4013 (agri input shop in Karanja); field not on bill so shared by area across our two fields (2 and 3); incl. GST
+2026-10-20,sawardoh,2;3,pesticide,Bumper 1 L (Adama),1,bottle,1100,paid,bill PEST4013; incl. GST
+2026-10-20,sawardoh,2;3,fertiliser,Chelmix Combi 1 kg (Poorva) micronutrient mix,1,kg,1300,paid,bill PEST4013; incl. GST
+2026-10-20,sawardoh,2;3,pesticide,Egnitus 250 ml (Bayer),2,bottle,1800,paid,bill PEST4013; incl. GST
+2026-10-20,sawardoh,2;3,pesticide,Velma 80 100 g (Rallis),5,packet,4000,paid,bill PEST4013; incl. GST; bill total Rs 9600
+2026-10-21,sawardoh,2;3,pesticide,Rilon 250 g (Rallis),1,packet,450,paid,bill PEST4023; incl. GST
+2026-10-21,sawardoh,2;3,fertiliser,Femigrow 200 ml (Swaro) organic fertiliser product,1,bottle,900,paid,bill PEST4023; incl. GST
+2026-10-21,sawardoh,2;3,other,Zlux-P 250 g (Ramci) plant growth product,1,packet,300,paid,bill PEST4023; incl. GST; bill total Rs 1650
